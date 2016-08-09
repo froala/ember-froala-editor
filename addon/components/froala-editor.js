@@ -28,7 +28,7 @@ export default Ember.Component.extend({
   // If there is no 'content' present then this is the
   // default content used when creating the editor
   // Note: This is the standard, "blank" Froala Editor content
-  defaultContent: '<p><br></p>',
+  defaultContent: '',
 
 
 

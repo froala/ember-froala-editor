@@ -575,7 +575,9 @@ const FroalaEditorComponent = Ember.Component.extend({
     // Properly update the editors html,
     // depending on the current state
     if ( this.get('_editorInitialized') ) {
-      this._editor.html.set( this.get('_content') );
+      if ( this.get('hasContent') ) {
+        this._editor.html.set( this.get('_content') );
+      }
     } else if ( this.get('_editorInitializing') ) {
       this.set( '_shouldSetHtml', true );
     } else {

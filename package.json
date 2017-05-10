@@ -14,7 +14,7 @@
     "test": "ember try:each",
     "deploy": "ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\"; git push; git checkout -"
   },
-  "repository": "froala/ember-froala-editor",
+  "repository": "https://github.com/froala/ember-froala-editor.git",
   "engines": {
     "node": ">= 4.0.0"
   },

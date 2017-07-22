@@ -15,11 +15,9 @@
     </p>
 
 
-    {{froala-editor options=exampleOptions content=froalaContent update=(action (mut froalaContent))}}
+    {{froala-editor options=exampleOptions}}
 
-    {{#if testingMode}}
-      Bound content value: <span class="bound-value">{{froalaContent}}</span>
-    {{/if}}
+
   </div>{{!-- .panel-body --}}
 </section>{{!-- .panel --}}
 

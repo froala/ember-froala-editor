@@ -58,6 +58,18 @@ Components and Helpers to use within your project templates.
 ```
 
 
+## Test Helper
+
+This addon also provides a convenient test helper to interact with the editor
+in acceptance tests. It functions similar to the [ember provided `fillIn()` test helper](http://emberjs.com/api/classes/Ember.Test.html#method_fillIn).
+Take a look at the [Testing page on the docs Website](http://froala.github.io/ember-froala-editor/#/addon/test-helper)
+for more details.
+
+```js
+fillInFroalaEditor('#my-editor', '<p>Foobar</p>');
+```
+
+
 ## Development
 
 * `git clone` this repository (fork if you plan on submitting a PR)
@@ -71,47 +83,14 @@ Components and Helpers to use within your project templates.
 * `ember server`
 * Visit the docs at http://localhost:4200
 
-## Testing
-### Running Tests
+
+## Running Tests
 
 * `npm test` (Runs `ember try:each` to test against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 * `ember server` (Visit tests at http://localhost:4200/tests)
 
-### Test Helper
-This component also provides a convenient test helper to interact with the component(s) in acceptance tests.
-To use this helper (`fillInFroalaEditor('My input', '.selector')`), please follow the following steps.
-
-**Register the helper:**  
-To use the helper in acceptance tests you need to register it in the `/tests/helpers/start-app.js` file.  
-For that import the registration function and invoke it immediately like so:
-```js
-import Ember from 'ember';
-import Application from '../../app';
-import config from '../../config/environment';
-import registerFroalaEditorHelper from '../../tests/helpers/ember-froala-editor';
-
-registerFroalaEditorHelper();
-
-export default function startApp(attrs) {
-  //...
-}
-```
-
-**Whitelist the helper as a global variable:**  
-Depending if your project is using ESLint or JSHint, add the global to the `.eslintrc.js` or `.jshint.js` file like so:
-```js
-  globals: {
-    fillInFroalaEditor: true
-  }
-```
-Now you can use the helper in any acceptance test.
-```js
-// First argument: input text (mandatory)
-// Second argument: selector to locate the editor (optional)
-fillInFroalaEditor('My input', '.selector');
-```
 
 ## Releasing
 

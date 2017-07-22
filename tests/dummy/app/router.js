@@ -37,6 +37,7 @@ Router.map(function() {
     this.route('installation');
     this.route('configuration');
     this.route('concepts');
+    this.route('test-helper');
   });
   // Different folder name to avoid collisions
   this.route('addon-components', {path:'components'}, function(){

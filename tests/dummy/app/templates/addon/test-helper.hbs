@@ -1,0 +1,164 @@
+<section class="panel panel-default">
+  <div class="panel-body">
+
+
+    <div class="page-header"><h1 class="h3">
+      Addon Test Helper
+    </h1></div>
+
+
+    <p class="lead">
+      This addon also provides a convenient test helper (<code>fillInFroalaEditor()</code>) to interact with the editor in acceptance tests.
+      It functions similar to the <a href="http://emberjs.com/api/classes/Ember.Test.html#method_fillIn" target="_blank">ember provided <code>fillIn()</code> test helper</a>.
+      To use this helper follow the below steps.
+    </p>
+
+
+    <h2 class="h4">
+      <code>fillInFroalaEditor(<em>selector</em>, <em>html</em>) <em>RSVP.Promise</em></code>
+    </h2>
+
+
+  </div>{{!-- .panel-body --}}
+
+
+  <div class="table-responsive"><table class="table">
+    <thead><tr>
+      <th scope="col">Argument</th>
+      <th scope="col">Type</th>
+      <th scope="col">Description</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <th scope="row">selector</th>
+        <td>string</td>
+        <td>jQuery selector to find the DOM element of your <code>&#123;&#123;froala-editor&#125;&#125;</code>. For example, if your template has <code>&#123;&#123;froala-editor id="description-editor"&#125;&#125;</code> then your selector would be <code>'#description-editor'</code></td>
+      </tr>
+      <tr>
+        <th scope="row">html</th>
+        <td>string | <a href="http://emberjs.com/api/classes/Ember.String.html#method_htmlSafe" target="_blank">SafeString</a></td>
+        <td>String of HTML, or a SafeString of HTML to set on the editor.</td>
+      </tr>
+    </tbody>
+  </table></div>
+
+
+  <div class="panel-body">
+
+
+    <p>
+      <strong>returns</strong> <code>RSVP.Promise</code>
+    </p>
+
+
+    <h2 class="h5">
+      1. Register the helper in your <code>start-app.js</code>
+    </h2>
+
+
+    <p>
+      To use the helper in acceptance tests you need to register it by importing it in your <code>/tests/helpers/start-app.js</code> file, just like you would with <a href="https://guides.emberjs.com/v2.14.0/testing/acceptance/#toc_custom-test-helpers" target="_blank">your own custom helpers</a>. The path you'll use to import is <code>ember-froala-editor/test-support/helpers/fill-in-froala-editor</code>.
+    </p>
+
+
+    <h3 class="h6">/tests/helpers/start-app.js</h3>
+    <pre>import Ember from 'ember';
+import Application from '../../app';
+import config from '../../config/environment';
+<strong>import fillInFroalaEditor from 'ember-froala-editor/test-support/helpers/fill-in-froala-editor';</strong>
+
+export default function startApp(attrs) {
+  // ... (other default code snipped...)
+}</pre>
+
+
+    <h2 class="h5">
+      2. Whitelist the helper as a global variable
+    </h2>
+
+
+    <p>
+      Depending if your project is using ESLint or JSHint, add the global to the test folder <code>.eslintrc.js</code> or <code>.jshintrc</code> file like so:
+    </p>
+
+
+    <div class="row">
+      <div class="col-md-6">
+
+
+        <h3 class="h6">/tests/.eslintrc.js</h3>
+        <pre>module.exports = {
+  env: {
+    embertest: true
+  },
+  globals: {
+    <strong>fillInFroalaEditor: true</strong>
+  },
+  rules: {
+    <strong>"no-unused-vars": ["error", {
+      "varsIgnorePattern": "fillInFroalaEditor"
+    }]</strong>
+  }
+};</pre>
+
+
+      </div>{{!-- .col --}}
+      <div class="col-md-6">
+
+
+        <h3 class="h6">/tests/.jshintrc</h3>
+        <pre>{
+  "predef": [
+    "document",
+    "window",
+    "location",
+    ...
+    <strong>"fillInFroalaEditor",</strong>
+    "find",
+    "findWithAssert",
+    ...
+  ],
+  ...
+}</pre>
+
+
+      </div>{{!-- .col --}}
+    </div>{{!-- .row --}}
+
+
+    <h2 class="h5">
+      3. Use it in acceptance tests
+    </h2>
+
+
+    <p>
+      Now you can use the helper in any acceptance test. <code>/tests/acceptance/*</code> Ex:
+    </p>
+
+
+    <pre>import { test } from 'qunit';
+import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+
+moduleForAcceptance('Acceptance | Scenario Name');
+
+test('Test Name', function(assert) {
+  visit('/');
+
+  andThen(() => {
+    assert.equal(find('#froala-editor .fr-element').html().trim(), '&lt;p&gt;&lt;br&gt;&lt;/p&gt;', 'Editor empty on load');
+    <strong>fillInFroalaEditor('#froala-editor', '&lt;p&gt;Foobar&lt;/p&gt;');</strong>
+  });
+
+  andThen(() =&gt; {
+    assert.equal(find('#froala-editor .fr-element').html().trim(), '&lt;p&gt;Foobar&lt;/p&gt;', 'Correct text entered');
+  });
+});</pre>
+
+
+    <p>
+      Note: <code>.fr-element</code> is froala-editor specific markup when the editor is initialized, and contains the actual content.
+    </p>
+
+
+  </div>{{!-- .panel-body --}}
+</section>{{!-- .panel --}}

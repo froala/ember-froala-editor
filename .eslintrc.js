@@ -9,8 +9,5 @@ module.exports = {
     browser: true
   },
   rules: {
-  },
-  globals: {
-    fillInFroalaEditor: true
   }
 };

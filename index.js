@@ -48,7 +48,7 @@ module.exports = {
 
 
     // Do not import anything if in "fastboot mode"
-    if ( process.env.EMBER_CLI_FASTBOOT ) {
+    if ( typeof FastBoot !== 'undefined' ) {
       return;
     }
 

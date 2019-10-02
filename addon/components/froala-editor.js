@@ -195,11 +195,11 @@ const FroalaEditorComponent = Component.extend({
       }
     } else if ( editor && content !== editor.html.get() ) {
       editor.html.set( content );
-    } else if ( !editor && content !== this.$( this.get('editorSelector') ).html() ) {
+    } else if ( !editor && content !== this.element.querySelectorAll(this.get('editorSelector')).forEach(el => el.addEventListener()) ) {
       // Note: Must use jQuery! Updating a bound template property causes the following error,
       //       which is likely caused by the way froala-editor modifies DOM and Glimmer not liking that..
       // Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
-      this.$( this.get('editorSelector') ).html( content );
+      this.element.querySelectorAll(this.get('editorSelector')).forEach(el => el.addEventListener(content));
     } else {
       // Note: _attributeOptions will only re-compute if editor is reinit'ed
       this.notifyPropertyChange('_attributeOptions');
@@ -296,7 +296,7 @@ const FroalaEditorComponent = Component.extend({
 
 
     // Actual destruction of the Froala Editor
-    this.$( this.get('editorSelector') ).froalaEditor( 'destroy' );
+    this.element.querySelectorAll(this.get('editorSelector')).forEach(el => el.addEventListener('destroy'));
 
   }, // destroyEditor()
 
@@ -559,7 +559,7 @@ const FroalaEditorComponent = Component.extend({
       } else if ( this.get('_editorInitialized') ) {
         try {
           resolve(
-            this.$( this.get('editorSelector') ).froalaEditor( ...arguments )
+            this.element.querySelectorAll(this.get('editorSelector')).forEach(el => el.addEventListener(...arguments))
           );
         } catch (e) {
           reject(e);
@@ -582,7 +582,7 @@ const FroalaEditorComponent = Component.extend({
         return new EmberPromise( (resolve, reject) => {
           try {
             resolve(
-              this.$( this.get('editorSelector') ).froalaEditor( ...arguments )
+              this.element.querySelectorAll(this.get('editorSelector')).forEach(el => el.addEventListener(...arguments))
             );
           } catch (e) {
             reject(e);

@@ -66,9 +66,7 @@ export default class FroalaEditorComponent extends Component {
     // Class methods are not available in a `for (name in this)` loop
     let propertyNames = Object.getOwnPropertyNames(this.__proto__);
 
-    for (let i in propertyNames) {
-      let propertyName = propertyNames[i];
-
+    for (let propertyName of propertyNames) {
       // Only names that start with on- are callbacks
       if (propertyName.indexOf('on-') !== 0) {
         continue;

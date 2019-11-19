@@ -168,7 +168,7 @@ export default class FroalaEditorComponent extends Component {
 
     // Determine which event will be called first
     let initEventName = (
-      this.combinedOptions.initOnClick ?
+      options.initOnClick ?
       'initializationDelayed' :
       'initialized'
     );
@@ -176,8 +176,11 @@ export default class FroalaEditorComponent extends Component {
     // Ensure the events object exists
     options.events = options.events || {};
 
+    // Grab the current init callback before overriding
+    let initEventCallback = options.events[initEventName];
+
     // Add the created callback to the proper initialization event
-    options.events[initEventName] = froalaArg([this.setupEditor, initEventName]);
+    options.events[initEventName] = froalaArg([this.setupEditor, initEventName, initEventCallback]);
 
     return options;
   }
@@ -213,15 +216,18 @@ export default class FroalaEditorComponent extends Component {
   }
 
 
-  @action setupEditor(editor, initEventName, ...args) {
+  @action setupEditor(editor, initEventName, initEventCallback, ...args) {
 
     // Add a reference to each other so they accessible from either
     editor.component = this;
     this.editor = editor;
 
+    // Call the combinedCallbacks getter once
+    let callbacks = this.combinedCallbacks;
+
     // Add event handler callbacks, passing in the editor as the first arg
-    for (let eventName in this.combinedCallbacks) {
-      this.editor.events.on(eventName, froalaArg([this.combinedCallbacks[eventName]]));
+    for (let eventName in callbacks) {
+      this.editor.events.on(eventName, froalaArg([callbacks[eventName]]));
     }
 
     // Add update callback when a setter is passed in
@@ -234,13 +240,13 @@ export default class FroalaEditorComponent extends Component {
 
     // Since we overrode this event callback,
     // call the passed in callback(s) if there are any
-    if (this.combinedOptions.events && typeof this.combinedOptions.events[initEventName] === 'function') {
+    if (initEventCallback === 'function') {
       // Mimic default behavior by binding the editor instance to the called context
-      this.combinedOptions.events[initEventName].bind(editor)(...args);
+      initEventCallback.bind(editor)(...args);
     }
-    if (typeof this.combinedCallbacks[initEventName] === 'function') {
+    if (typeof callbacks[initEventName] === 'function') {
       // Mimic a typical on-* callback by passing in the editor as the first arg
-      this.combinedCallbacks[initEventName](editor, ...args);
+      callbacks[initEventName](editor, ...args);
     }
 
   }

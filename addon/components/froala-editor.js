@@ -201,10 +201,6 @@ export default class FroalaEditorComponent extends Component {
       (typeof args.updateEvent === 'string' || typeof args.updateEvent === 'undefined')
     );
     assert(
-      '<FroalaEditor> @returnSafeString argument must be a boolean',
-      (typeof args.returnSafeString === 'boolean' || typeof args.returnSafeString === 'undefined')
-    );
-    assert(
       '<FroalaEditor> @options argument must be an object',
       (typeof args.options === 'object' || typeof args.options === 'undefined')
     );

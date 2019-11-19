@@ -82,7 +82,7 @@ function (setter) aspect. The `@content` must be a SafeString from
 
 ```hbs
 <FroalaEditor
-  @content=this.content
+  @content={{this.content}}
   @update={{fn (mut this.content)}}
 />
 ```
@@ -94,7 +94,7 @@ through the `@updateEvent` argument.
 
 ```hbs
 <FroalaEditor
-  @content=this.content
+  @content={{this.content}}
   @update={{fn (mut this.content)}}
   @updateEvent="input"
 />
@@ -470,7 +470,7 @@ In addition to the [Froala Editor changes][20] itself, this addon has changes
 between 2.x and 3.x. Mainly, the addon has been updated to use [Ember Octane][19]
 features and programing models. Here are the addon changes between 2.x and 3.x:
 
-#### jQuery no longer a required dependency
+### jQuery no longer a required dependency
 This is probably why you're looking at 3.x in the first place. :) The Froala
 Editor (and this addon) no longer requires jQuery so you can configure ember
 to not include it in your build:
@@ -479,7 +479,7 @@ to not include it in your build:
 ember feature:disable jquery-integration
 ```
 
-#### Import `FroalaEditor` instead of accessing from `$.FroalaEditor`
+### Import `FroalaEditor` instead of accessing from `$.FroalaEditor`
 With the removal of jQuery integration, the Froala Editor is instead importable
 from the `froala-editor` package. This will mostly impact any [custom elements][13]
 that are setup on [application initializers][17].
@@ -507,7 +507,7 @@ export default {
 };
 ```
 
-#### `ember-font-awesome` no longer an added dependency
+### `ember-font-awesome` no longer an added dependency
 The Froala Editor 2.x series used FontAwesome icons but starting with 3.0
 they ship their own. Therefore this addon no longer adds `ember-font-awesome`
 to your projects dependencies and can remove if not needed elsewhere in your app:
@@ -516,7 +516,7 @@ to your projects dependencies and can remove if not needed elsewhere in your app
 npm uninstall ember-font-awesome --save-dev
 ```
 
-#### `<AngleBracket>` invocation style
+### `<AngleBracket>` invocation style
 While not required, the Ember Octane programming model uses angle-bracket
 invocation style when using components. That means replace `{{}}` with `<>`
 and [classify][16] the component name. Putting this together;
@@ -533,7 +533,7 @@ and [classify][16] the component name. Putting this together;
 <FroalaContent />
 ```
 
-#### Pass component attributes as `@arguments`
+### Pass component attributes as `@arguments`
 While also an Ember Octane programming model, but also required with the move
 to Glimmer Components, component attributes must now be passed in as arguments.
 Simply add `@` to the beginning of the name.
@@ -550,7 +550,7 @@ Simply add `@` to the beginning of the name.
 <FroalaContent @content={{this.content}} />
 ```
 
-#### Positional params no longer supported
+### Positional params no longer supported
 With the move to Glimmer Components, and using angle-bracket invocation,
 positional parameters are no longer supported. Instead, you must specify
 the argument name when passing in `@content`, `@update`, and `@options`.
@@ -579,7 +579,7 @@ the argument name when passing in `@content`, `@update`, and `@options`.
 />
 ```
 
-#### `@content` must now be a SafeString
+### `@content` must now be a SafeString
 Previously the `content` could be a string or SafeString an the component would
 properly handle either type. Now the component requires that `@content` be a
 SafeString to indicate the incoming content has been properly guarded against
@@ -604,7 +604,7 @@ and `{{to-string}}` above. So if you still plan on using strings;
 />
 ```
 
-#### `on-*-getHtml` callbacks replaced with `{{froala-html}}` helper
+### `on-*-getHtml` callbacks replaced with `{{froala-html}}` helper
 The 2.x series of this addon provided a special way to get the editors current
 html/content as the first argument in action callbacks. This functionality has
 been moved to a template helper that will wrap your callback to provide the
@@ -620,7 +620,7 @@ same functionality.
 <FroalaEditor @on-blur={{froala-html (fn (mut this.content))}} />
 ```
 
-#### Event callbacks now passed the `editor` instead of `component`
+### Event callbacks now passed the `editor` instead of `component`
 With closer integration with the Froala Editor (because it's not a jQuery
 plugin anymore), the editor instance is passed to event callbacks instead
 of the component instance.
@@ -639,7 +639,7 @@ function callback(editor, ...params) {
 }
 ```
 
-#### Call methods directly on the editor instead of `method()` action
+### Call methods directly on the editor instead of `method()` action
 Calling editor methods in the 2.x series required you to go through the jQuery
 integration, which the `{{froala-editor}}` component hid-away in the `method()`
 action. But with 3.0 you can call them directly on the editor instance.
@@ -648,7 +648,7 @@ Additionally, you no longer need to deal with the Promise returned by `method()`
 **From**
 ```js
 function callback(component, ...args) {
-  let html = component.method('html.get').then(result => result);
+  let html = await component.method('html.get');
 }
 ```
 
@@ -659,12 +659,12 @@ function callback(editor, ...args) {
 }
 ```
 
-#### `tagName` no longer supported (at the moment)
+### `tagName` no longer supported (at the moment)
 The `{{froala-editor}}` results in a `<div>` element but that previously could
 be changed with the `tagName` attribute. That is not supported out of the box
 with Glimmer Components but is [being worked on with an approved RFC][21].
 
-#### Editor is no longer "wrapped"
+### Editor is no longer "wrapped"
 Previously the `{{froala-editor}}` was wrapped in two `<div>`'s, once with the
 component tag/element itself and another as the actual Froala Editor instance.
 With the move to Glimmer Components, this was no longer required to "contain"
@@ -687,7 +687,7 @@ Or apply your own class by passing in the `class` attribute;
 <FroalaEditor class="my-class-name" />
 ```
 
-#### Extending the editor is now class-based
+### Extending the editor is now class-based
 When extending the `<FroalaEditor>` component, it is now native class based
 instead of `EmberObject` based. Therefore, be sure to add properties and
 methods as such in the class instead of the object/hash way:
@@ -710,14 +710,14 @@ export default class FroalaEditor extends FroalaEditorComponent {
 }
 ```
 
-#### Special `reinit` method no longer available
+### Special `reinit` method no longer available
 With 2.x there was a special `reinit` method on the `{{froala-editor}}`
 component that would destroy and re-initialize the editor. This was useful
 to make a "hide-on-blur" effect where the editor would go back to the
 `initOnClick` mode when the user focused away. If this is something you had
 used, and would like to see again, please open a new Issue on the repository.
 
-#### `{{merged-hash}}` helper no longer imported into app build-tree
+### `{{merged-hash}}` helper no longer imported into app build-tree
 While the `{{merged-hash}}` helper is still provided by this addon, it is no
 longer automatically imported for use in your app. Rather, you must create
 your own helper and re-export the addons helper. Take a look at the docs

@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import { assert } from '@ember/debug';
 
-export function froalaArg([callback, ...partial]/*, hash*/) {
+export function froalaArg(callback, ...partial) {
   assert(
     '{{froala-arg}} helper requires a function as the first parameter',
     typeof callback === 'function'
@@ -16,4 +16,4 @@ export function froalaArg([callback, ...partial]/*, hash*/) {
   return wrapper;
 }
 
-export default helper(froalaArg);
+export default helper(([callback, ...partial]) => froalaArg(callback, ...partial));

@@ -17,7 +17,7 @@ module('Unit | Helper | froala-html', function(hooks) {
       }
     };
     let setter = content => assert.equal(content.toString(), html);
-    let closure = froalaHtml([setter], {});
+    let closure = froalaHtml(setter);
     closure(editor);
   });
 
@@ -33,7 +33,7 @@ module('Unit | Helper | froala-html', function(hooks) {
     };
     // Ex: {{froala-html this.setter}}
     let setter = content => assert.equal(content.toString(), html);
-    let closure = froalaHtml([setter], {}).bind(editor);
+    let closure = froalaHtml(setter).bind(editor);
     closure();
   });
 
@@ -49,7 +49,7 @@ module('Unit | Helper | froala-html', function(hooks) {
     };
     // Ex: {{froala-html this.setter this.htmlHere}}
     let setter = (content, editor, htmlHere) => assert.equal(htmlHere, html);
-    let closure = froalaHtml([setter, html], {});
+    let closure = froalaHtml(setter, true, html);
     closure(editor);
   });
 
@@ -65,7 +65,7 @@ module('Unit | Helper | froala-html', function(hooks) {
     };
     // Ex: @on-paste-afterCleanup={{froala-html this.setter}}
     let setter = (content, editor, clipboard_html) => assert.equal(clipboard_html, html);
-    let closure = froalaHtml([setter], {});
+    let closure = froalaHtml(setter);
     closure(editor, html);
   });
 
@@ -85,7 +85,7 @@ module('Unit | Helper | froala-html', function(hooks) {
       assert.equal(check1, html);
       assert.equal(check2, html);
     };
-    let closure = froalaHtml([setter, html], {});
+    let closure = froalaHtml(setter, true, html);
     closure(editor, html);
   });
 
@@ -101,19 +101,19 @@ module('Unit | Helper | froala-html', function(hooks) {
     };
     // Ex: @on-some-event={{froala-html this.setter returnSafeString=false}}
     let setter = content => assert.notOk(isHTMLSafe(content));
-    let closure = froalaHtml([setter], {returnSafeString:false});
+    let closure = froalaHtml(setter, false);
     closure(editor);
   });
 
   test('helper function called without any editor asserts', function(assert) {
     let setter = () => {};
-    let closure = froalaHtml([setter], {});
+    let closure = froalaHtml(setter);
     assert.throws(() => closure());
   });
 
   test('helper function called without any closure asserts', function(assert) {
     // Ex: {{froala-html}}
-    assert.throws(() => froalaHtml([], {}));
+    assert.throws(() => froalaHtml());
   });
 
 });

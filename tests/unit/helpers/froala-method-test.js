@@ -6,7 +6,7 @@ module('Unit | Helper | froala-method', function(hooks) {
   setupTest(hooks);
 
   test('returns a closure / function', function(assert) {
-    let closure = froalaMethod(["froala.method.name"]);
+    let closure = froalaMethod("froala.method.name");
     assert.equal(typeof closure, 'function');
   });
 
@@ -20,7 +20,7 @@ module('Unit | Helper | froala-method', function(hooks) {
         }
       }
     };
-    let closure = froalaMethod(['html.get']).bind(editor);
+    let closure = froalaMethod('html.get').bind(editor);
     assert.equal(closure(), html); // Mimic an options event callback
   });
 
@@ -35,7 +35,7 @@ module('Unit | Helper | froala-method', function(hooks) {
       }
     };
     // Ex: {{froala-method "html.get"}}
-    let closure = froalaMethod(['html.get']);
+    let closure = froalaMethod('html.get');
     assert.equal(closure(editor), html); // Mimic an on-* event callback
   });
 
@@ -48,7 +48,7 @@ module('Unit | Helper | froala-method', function(hooks) {
       }
     };
     // Ex: {{froala-method "foobar"}}
-    let closure = froalaMethod(['callback', helperParam]);
+    let closure = froalaMethod('callback', {}, helperParam);
     closure(editor); // Mimic an on-* event callback
   });
 
@@ -61,7 +61,7 @@ module('Unit | Helper | froala-method', function(hooks) {
       }
     };
     // Ex: {{froala-method "replace" replace="2"}}
-    let closure = froalaMethod(['callback', 'replace'], {replace: 2});
+    let closure = froalaMethod('callback', {replace: 2}, 'replace');
     closure(editor, eventParam); // Mimic an on-* event callback
   });
 

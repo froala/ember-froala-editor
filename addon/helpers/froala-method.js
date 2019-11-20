@@ -2,7 +2,7 @@ import { helper } from '@ember/component/helper';
 import { assert } from '@ember/debug';
 import { get } from '@ember/object';
 
-export function froalaMethod([methodName, ...helperParams], helperHash) {
+export function froalaMethod(methodName, helperHash={}, ...helperParams) {
 
   assert(
     '{{froala-method}} helper needs a string method path as the first argument',
@@ -60,4 +60,4 @@ export function froalaMethod([methodName, ...helperParams], helperHash) {
   };
 }
 
-export default helper(froalaMethod);
+export default helper(([methodName, ...partial], hash) => froalaMethod(methodName, hash, ...partial));

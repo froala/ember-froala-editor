@@ -1,16 +1,16 @@
 import { helper } from '@ember/component/helper';
 
-export function toString([context, ...partialArgs]/*, hash*/) {
+export function toString(context, ...partial) {
 
   // @update={{to-string (fn (mut this.content))}}
   if (typeof context === 'function') {
-    return function toStringClosure(content, ...closureArgs) {
+    return function toStringClosure(content, ...args) {
       let contentString = (
         content && typeof content.toString === 'function' ?
         content.toString() :
         content
       );
-      return context(contentString, ...partialArgs, ...closureArgs);
+      return context(contentString, ...partial, ...args);
     };
 
   // {{to-string this.content}}
@@ -24,4 +24,4 @@ export function toString([context, ...partialArgs]/*, hash*/) {
 
 }
 
-export default helper(toString);
+export default helper(([context, ...partial]) => toString(context, ...partial));

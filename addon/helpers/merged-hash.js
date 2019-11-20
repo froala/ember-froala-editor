@@ -1,9 +1,9 @@
 import { helper } from '@ember/component/helper';
 import { assign } from '@ember/polyfills';
 
-export function mergedHash(params, hash) {
+export function mergedHash(...objects) {
   // Assumes all params are objects
-  return assign({}, ...params, hash);
+  return assign({}, ...objects);
 }
 
-export default helper(mergedHash);
+export default helper((params, hash) => mergedHash(...params, hash));

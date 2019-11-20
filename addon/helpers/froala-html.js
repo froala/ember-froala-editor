@@ -2,7 +2,7 @@ import { helper } from '@ember/component/helper';
 import { assert } from '@ember/debug';
 import { htmlSafe } from '@ember/template';
 
-export function froalaHtml([callback, ...partial], {returnSafeString=true}) {
+export function froalaHtml(callback, returnSafeString=true, ...partial) {
 
   assert(
     '{{froala-html}} helper requires a function as the first parameter',
@@ -33,4 +33,4 @@ export function froalaHtml([callback, ...partial], {returnSafeString=true}) {
 
 }
 
-export default helper(froalaHtml);
+export default helper(([callback, ...partial], {returnSafeString=true}) => froalaHtml(callback, returnSafeString, ...partial));

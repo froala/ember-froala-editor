@@ -180,7 +180,7 @@ export default class FroalaEditorComponent extends Component {
     let initEventCallback = options.events[initEventName];
 
     // Add the created callback to the proper initialization event
-    options.events[initEventName] = froalaArg([this.setupEditor, initEventName, initEventCallback]);
+    options.events[initEventName] = froalaArg(this.setupEditor, initEventName, initEventCallback);
 
     return options;
   }
@@ -223,16 +223,16 @@ export default class FroalaEditorComponent extends Component {
 
     // Add event handler callbacks, passing in the editor as the first arg
     for (let eventName in callbacks) {
-      this.editor.events.on(eventName, froalaArg([callbacks[eventName]]));
+      this.editor.events.on(eventName, froalaArg(callbacks[eventName]));
     }
 
     // Add update callback when a setter is passed in
     if (this.update) {
-      this.editor.events.on(this.updateEvent, froalaHtml([this.update], {}), true); // true = run first
+      this.editor.events.on(this.updateEvent, froalaHtml(this.update), true); // true = run first
     }
 
     // Add destroyed callback so the editor can be unreferenced
-    this.editor.events.on('destroy', froalaArg([this.teardownEditor]), false); // false = run last
+    this.editor.events.on('destroy', froalaArg(this.teardownEditor), false); // false = run last
 
     // Since we overrode this event callback,
     // call the passed in callback(s) if there are any

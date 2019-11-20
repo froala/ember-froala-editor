@@ -59,7 +59,7 @@ export default class FroalaEditorComponent extends Component {
     let callbacks = {};
 
     // Regex's used for replacing things in the name
-    const regexOnOrHtml = /^on-/g;
+    const regexOnPrefix = /^on-/g;
     const regexHyphens  = /-/g;
     const regexDots     = /\./g;
 
@@ -79,7 +79,7 @@ export default class FroalaEditorComponent extends Component {
 
       // Convert the name to what the event name would be
       let eventName = propertyName;
-      eventName = eventName.replace(regexOnOrHtml, '');
+      eventName = eventName.replace(regexOnPrefix, '');
       eventName = eventName.replace(regexHyphens, '.');
 
       // Special use case for the 'popups.hide.[id]' event
@@ -103,7 +103,7 @@ export default class FroalaEditorComponent extends Component {
     let callbacks = {};
 
     // Regex's used for replacing things in the name
-    const regexOnOrHtml = /^on-/g;
+    const regexOnPrefix = /^on-/g;
     const regexHyphens  = /-/g;
     const regexDots     = /\./g;
 
@@ -121,7 +121,7 @@ export default class FroalaEditorComponent extends Component {
 
       // Convert the name to what the event name would be
       let eventName = argumentName;
-      eventName = eventName.replace(regexOnOrHtml, '');
+      eventName = eventName.replace(regexOnPrefix, '');
       eventName = eventName.replace(regexHyphens, '.');
 
       // Special use case for the 'popups.hide.[id]' event

@@ -135,6 +135,18 @@ function pasteCallback(editor, clipboard_html) {}
 function commandsCallback(editor, cmd, param1, param2) {}
 ```
 
+The `<FroalaEditor>` also watches the `@disabled` state and will appropriately
+enable/disable the editing abilities when this argument changes. It basically
+is the equivalent to the `<textarea disabled>` attribute.
+
+```hbs
+<FroalaEditor
+  @disabled={{this.disabled}}
+  @on-edit-on={{this.editorEnabledCallback}}
+  @on-edit-off={{this.editorDisabledCallback}}
+/>
+```
+
 
 ### `<FroalaContent>` Component
 

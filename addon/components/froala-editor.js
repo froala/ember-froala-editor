@@ -234,6 +234,11 @@ export default class FroalaEditorComponent extends Component {
     // Add destroyed callback so the editor can be unreferenced
     this.editor.events.on('destroy', froalaArg(this.teardownEditor), false); // false = run last
 
+    // Handle the initial @disabled state
+    if (this.args.disabled) {
+      this.editor.edit.off();
+    }
+
     // Since we overrode this event callback,
     // call the passed in callback(s) if there are any
     if (initEventCallback === 'function') {
@@ -248,7 +253,7 @@ export default class FroalaEditorComponent extends Component {
   }
 
 
-  @action updateContent(element, [content]) {
+  @action updateEditorContent(element, [content]) {
     assert(
       '<FroalaEditor> updated @content argument must be a SafeString from htmlSafe()',
       (isHTMLSafe(content) || content === null || typeof content === 'undefined')
@@ -276,6 +281,23 @@ export default class FroalaEditorComponent extends Component {
       }
 
     }
+  }
+
+
+  @action updateDisabledState(element, [disabled]) {
+
+    // Ignore when the editor is not available
+    if (!this.editor) {
+      return;
+    }
+
+    // Change the editor to the appropriate state
+    if (disabled && !this.editor.edit.isDisabled()) {
+      this.editor.edit.off();
+    } else if (!disabled && this.editor.edit.isDisabled()) {
+      this.editor.edit.on();
+    }
+
   }
 
 

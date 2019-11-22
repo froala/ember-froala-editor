@@ -1,7 +1,8 @@
 <div
   ...attributes
   {{did-insert this.createEditor this.optionsWithInitEvent}}
-  {{did-update this.updateContent @content}}
+  {{did-update this.updateEditorContent @content}}
+  {{did-update this.updateDisabledState @disabled}}
   {{will-destroy this.destroyEditor}}
 >
   {{#if this.fastboot.isFastboot}}

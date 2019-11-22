@@ -378,4 +378,43 @@ module('Integration | Component | froala-editor', function(hooks) {
   });
 
 
+  test('initial @disabled state is applied', async function(assert) {
+
+    this.set('checkDisabledState', editor => {
+      assert.ok(editor.edit.isDisabled());
+    });
+
+    await render(hbs`
+      <FroalaEditor
+        @disabled={{true}}
+        @on-initialized={{this.checkDisabledState}}
+      />
+    `);
+
+  });
+
+
+  test('updated @disabled state is applied', async function(assert) {
+
+    this.set('disabled', false);
+
+    this.set('enableDisabled', () => {
+      this.set('disabled', true);
+    });
+
+    this.set('editOff', () => {
+      assert.ok(true);
+    });
+
+    await render(hbs`
+      <FroalaEditor
+        @disabled={{this.disabled}}
+        @on-initialized={{this.enableDisabled}}
+        @on-edit-off={{this.editOff}}
+      />
+    `);
+
+  });
+
+
 });

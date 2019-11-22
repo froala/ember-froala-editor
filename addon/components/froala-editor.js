@@ -218,6 +218,13 @@ export default class FroalaEditorComponent extends Component {
     editor.component = this;
     this.editor = editor;
 
+    // Handle the initial @disabled state
+    // Note: Run before the event callbacks are added,
+    //       so the @on-edit-off callback isn't triggered
+    if (this.args.disabled) {
+      this.editor.edit.off();
+    }
+
     // Call the combinedCallbacks getter once
     let callbacks = this.combinedCallbacks;
 
@@ -233,11 +240,6 @@ export default class FroalaEditorComponent extends Component {
 
     // Add destroyed callback so the editor can be unreferenced
     this.editor.events.on('destroy', froalaArg(this.teardownEditor), false); // false = run last
-
-    // Handle the initial @disabled state
-    if (this.args.disabled) {
-      this.editor.edit.off();
-    }
 
     // Since we overrode this event callback,
     // call the passed in callback(s) if there are any

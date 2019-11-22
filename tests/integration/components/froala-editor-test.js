@@ -417,4 +417,34 @@ module('Integration | Component | froala-editor', function(hooks) {
   });
 
 
+  test('initial @disabled state does not double trigger the @on-edit-off callback', async function(assert) {
+    assert.expect(2);
+
+    this.set('disabled', true);
+
+    this.set('disableDisabled', () => {
+      this.set('disabled', false);
+    });
+
+    this.set('editOn', () => {
+      assert.ok(true);
+      this.set('disabled', true);
+    });
+
+    this.set('editOff', () => {
+      assert.ok(true);
+    });
+
+    await render(hbs`
+      <FroalaEditor
+        @disabled={{this.disabled}}
+        @on-initialized={{this.disableDisabled}}
+        @on-edit-on={{this.editOn}}
+        @on-edit-off={{this.editOff}}
+      />
+    `);
+
+  });
+
+
 });

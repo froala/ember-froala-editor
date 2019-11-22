@@ -19,13 +19,14 @@
   "bugs": "https://github.com/froala/ember-froala-editor/issues",
   "license": "MIT",
   "contributors": [
-    "Ryan Panning <panman82@gmail.com>",
-    "Stefan Neculai <stefan@froala.com>",
+    "Ryan Panning",
+    "Stefan Neculai",
     "Michael Donaldson",
     "Diana Neculai",
     "Laura Lebovic",
     "Richard Livsey",
-    "Raphael Nunes dos Santos"
+    "Raphael Nunes dos Santos",
+    "Keita Urashima"
   ],
   "directories": {
     "doc": "doc",

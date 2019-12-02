@@ -80,7 +80,7 @@
     "configPath": "tests/dummy/config",
     "demoURL": "http://www.emberwysiwygeditor.com/",
     "versionCompatibility": {
-      "ember": ">=3.13.0"
+      "ember": ">=2.18.0"
     }
   }
 }

@@ -12,6 +12,7 @@ module.exports = async function() {
             'ember-angle-bracket-invocation-polyfill': '^2.0.2',
             'ember-decorators-polyfill': '^1.1.1',
             'ember-modifier-manager-polyfill': '^1.2.0',
+            'ember-native-class-polyfill': '^1.0.6',
             'ember-source': '~2.18.0'
           }
         }
@@ -23,6 +24,7 @@ module.exports = async function() {
             'ember-angle-bracket-invocation-polyfill': '^2.0.2',
             'ember-decorators-polyfill': '^1.1.1',
             'ember-modifier-manager-polyfill': '^1.2.0',
+            'ember-native-class-polyfill': '^1.0.6',
             'ember-source': '~3.0.0'
           }
         }
@@ -34,6 +36,7 @@ module.exports = async function() {
             'ember-angle-bracket-invocation-polyfill': '^2.0.2',
             'ember-decorators-polyfill': '^1.1.1',
             'ember-modifier-manager-polyfill': '^1.2.0',
+            'ember-native-class-polyfill': '^1.0.6',
             'ember-source': '~3.1.0'
           }
         }
@@ -45,6 +48,7 @@ module.exports = async function() {
             'ember-angle-bracket-invocation-polyfill': '^2.0.2',
             'ember-decorators-polyfill': '^1.1.1',
             'ember-modifier-manager-polyfill': '^1.2.0',
+            'ember-native-class-polyfill': '^1.0.6',
             'ember-source': '~3.2.0'
           }
         }
@@ -56,6 +60,7 @@ module.exports = async function() {
             'ember-angle-bracket-invocation-polyfill': '^2.0.2',
             'ember-decorators-polyfill': '^1.1.1',
             'ember-modifier-manager-polyfill': '^1.2.0',
+            'ember-native-class-polyfill': '^1.0.6',
             'ember-source': '~3.3.0'
           }
         }
@@ -67,6 +72,7 @@ module.exports = async function() {
             'ember-angle-bracket-invocation-polyfill': '^2.0.2',
             'ember-decorators-polyfill': '^1.1.1',
             'ember-modifier-manager-polyfill': '^1.2.0',
+            'ember-native-class-polyfill': '^1.0.6',
             'ember-source': '~3.4.0'
           }
         }
@@ -78,6 +84,7 @@ module.exports = async function() {
             'ember-angle-bracket-invocation-polyfill': '^2.0.2',
             'ember-decorators-polyfill': '^1.1.1',
             'ember-modifier-manager-polyfill': '^1.2.0',
+            'ember-native-class-polyfill': '^1.0.6',
             'ember-source': '~3.5.0'
           }
         }

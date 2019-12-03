@@ -16,7 +16,7 @@ ember-froala-editor
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.13 or above
+* Ember.js v2.18 or above
 * Ember CLI v2.15 or above
 * Node.js v8 or above
 

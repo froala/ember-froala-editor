@@ -6,66 +6,6 @@ module.exports = async function() {
   return {
     scenarios: [
       {
-        name: 'ember-2.18',
-        npm: {
-          devDependencies: {
-            'ember-angle-bracket-invocation-polyfill': '^2.0.2',
-            'ember-decorators-polyfill': '^1.1.1',
-            'ember-modifier-manager-polyfill': '^1.2.0',
-            'ember-native-class-polyfill': '^1.0.6',
-            'ember-source': '~2.18.0'
-          }
-        }
-      },
-      {
-        name: 'ember-3.0',
-        npm: {
-          devDependencies: {
-            'ember-angle-bracket-invocation-polyfill': '^2.0.2',
-            'ember-decorators-polyfill': '^1.1.1',
-            'ember-modifier-manager-polyfill': '^1.2.0',
-            'ember-native-class-polyfill': '^1.0.6',
-            'ember-source': '~3.0.0'
-          }
-        }
-      },
-      {
-        name: 'ember-3.1',
-        npm: {
-          devDependencies: {
-            'ember-angle-bracket-invocation-polyfill': '^2.0.2',
-            'ember-decorators-polyfill': '^1.1.1',
-            'ember-modifier-manager-polyfill': '^1.2.0',
-            'ember-native-class-polyfill': '^1.0.6',
-            'ember-source': '~3.1.0'
-          }
-        }
-      },
-      {
-        name: 'ember-3.2',
-        npm: {
-          devDependencies: {
-            'ember-angle-bracket-invocation-polyfill': '^2.0.2',
-            'ember-decorators-polyfill': '^1.1.1',
-            'ember-modifier-manager-polyfill': '^1.2.0',
-            'ember-native-class-polyfill': '^1.0.6',
-            'ember-source': '~3.2.0'
-          }
-        }
-      },
-      {
-        name: 'ember-3.3',
-        npm: {
-          devDependencies: {
-            'ember-angle-bracket-invocation-polyfill': '^2.0.2',
-            'ember-decorators-polyfill': '^1.1.1',
-            'ember-modifier-manager-polyfill': '^1.2.0',
-            'ember-native-class-polyfill': '^1.0.6',
-            'ember-source': '~3.3.0'
-          }
-        }
-      },
-      {
         name: 'ember-3.4',
         npm: {
           devDependencies: {

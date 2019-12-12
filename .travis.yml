@@ -44,12 +44,7 @@ jobs:
     # we recommend new addons test the current and previous LTS
     # as well as latest stable release (bonus points to beta/canary)
     - stage: "Additional Tests"
-      env: EMBER_TRY_SCENARIO=ember-2.18
-    - env: EMBER_TRY_SCENARIO=ember-3.0
-    - env: EMBER_TRY_SCENARIO=ember-3.1
-    - env: EMBER_TRY_SCENARIO=ember-3.2
-    - env: EMBER_TRY_SCENARIO=ember-3.3
-    - env: EMBER_TRY_SCENARIO=ember-3.4
+      env: EMBER_TRY_SCENARIO=ember-3.4
     - env: EMBER_TRY_SCENARIO=ember-3.5
     - env: EMBER_TRY_SCENARIO=ember-3.6
     - env: EMBER_TRY_SCENARIO=ember-3.7

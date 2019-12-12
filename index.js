@@ -33,8 +33,8 @@ module.exports = {
       'To use ember-froala-editor you must have ember-cli 2.15.0 or later!'
     );
     checker.forEmber().assertAbove(
-      '2.18.0',
-      'To use ember-froala-editor you must have ember.js 2.18.0 or later!'
+      '3.4.0',
+      'To use ember-froala-editor you must have ember.js 3.4.0 or later!'
     );
   }, // init()
 

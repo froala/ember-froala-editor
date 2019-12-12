@@ -16,7 +16,7 @@ ember-froala-editor
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v2.18 or above
+* Ember.js v3.4 or above
 * Ember CLI v2.15 or above
 * Node.js v8 or above
 
@@ -791,7 +791,7 @@ docs site was not updated for 3.x so references here have been removed, for now.
 #### Why does this addon only work with recent ember versions, 3.13+?
 Due to the move to Glimmer Components, there is still work being done to support
 backwards compatibility prior to 3.13, mainly a `setComponentTemplate()`
-polyfill. Once that is complete, this addon *should* work going back to 2.18
+polyfill. Once that is complete, this addon *should* work going back to 3.4
 by using several other polyfills.
 
 

@@ -16,7 +16,7 @@ ember-froala-editor
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.13 or above
+* Ember.js v3.4 or above
 * Ember CLI v2.15 or above
 * Node.js v8 or above
 
@@ -432,8 +432,10 @@ properties and methods.
 3. Add [options][7] to the `options = {}` object or individually
 4. Add [event callbacks][8] with the `on-eventName` naming strategy
   * Note: Use the `@action` decorator to retain the component context
+5. Add a new template file to re-export the original template (see second code example below)
 
 ```js
+// app/components/froala-editor.js
 import FroalaEditorComponent from 'ember-froala-editor/components/froala-editor';
 
 export default class FroalaEditor extends FroalaEditorComponent {
@@ -446,6 +448,11 @@ export default class FroalaEditor extends FroalaEditorComponent {
   'on-eventName'(editor, ...args) {/* this = editor */}
   @action 'on-eventName'(editor, ...args) {/* this = component */}
 }
+```
+
+```js
+// app/templates/components/froala-editor.js
+export { default } from 'ember-froala-editor/templates/components/froala-editor';
 ```
 
 
@@ -791,7 +798,7 @@ docs site was not updated for 3.x so references here have been removed, for now.
 #### Why does this addon only work with recent ember versions, 3.13+?
 Due to the move to Glimmer Components, there is still work being done to support
 backwards compatibility prior to 3.13, mainly a `setComponentTemplate()`
-polyfill. Once that is complete, this addon *should* work going back to 2.18
+polyfill. Once that is complete, this addon *should* work going back to 3.4
 by using several other polyfills.
 
 

@@ -17,8 +17,8 @@ Compatibility
 ------------------------------------------------------------------------------
 
 * Ember.js v3.4 or above
-* Ember CLI v2.15 or above
-* Node.js v8 or above
+* Ember CLI v3.4 or above
+* Node.js v10 or v12 and above
 
 
 Installation

@@ -29,8 +29,8 @@ module.exports = {
     this._super.init.apply( this, arguments );
     let checker = new VersionChecker( this );
     checker.for('ember-cli').assertAbove(
-      '2.15.0',
-      'To use ember-froala-editor you must have ember-cli 2.15.0 or later!'
+      '3.4.0',
+      'To use ember-froala-editor you must have ember-cli 3.4.0 or later!'
     );
     checker.forEmber().assertAbove(
       '3.4.0',

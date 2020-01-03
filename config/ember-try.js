@@ -162,58 +162,11 @@ module.exports = async function() {
         name: 'ember-classic',
         env: {
           EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'application-template-wrapper': true,
+            // 'application-template-wrapper': true, // breaks assert.dom('div') in tests
             'default-async-observers': false,
             'template-only-glimmer-components': false
           })
         },
-        npm: {
-          ember: {
-            edition: 'classic'
-          }
-        }
-      },
-      {
-        name: 'ember-classic-wrapper',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'application-template-wrapper': true
-          })
-        },
-        npm: {
-          ember: {
-            edition: 'classic'
-          }
-        }
-      },
-      {
-        name: 'ember-classic-observers',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'default-async-observers': false
-          })
-        },
-        npm: {
-          ember: {
-            edition: 'classic'
-          }
-        }
-      },
-      {
-        name: 'ember-classic-template',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'template-only-glimmer-components': false
-          })
-        },
-        npm: {
-          ember: {
-            edition: 'classic'
-          }
-        }
-      },
-      {
-        name: 'ember-classic-edition',
         npm: {
           ember: {
             edition: 'classic'

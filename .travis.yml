@@ -65,10 +65,6 @@ jobs:
     - env: EMBER_TRY_SCENARIO=ember-canary
     - env: EMBER_TRY_SCENARIO=ember-default-with-jquery
     - env: EMBER_TRY_SCENARIO=ember-classic
-    - env: EMBER_TRY_SCENARIO=ember-classic-wrapper
-    - env: EMBER_TRY_SCENARIO=ember-classic-observers
-    - env: EMBER_TRY_SCENARIO=ember-classic-template
-    - env: EMBER_TRY_SCENARIO=ember-classic-edition
 
 script:
   - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO

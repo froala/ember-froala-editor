@@ -1,5 +1,6 @@
 import { schedule } from '@ember/runloop';
 import Component from '@ember/component';
+import $ from 'jquery';
 import layout from '../templates/components/header-navbar';
 
 export default Component.extend({
@@ -22,19 +23,19 @@ export default Component.extend({
   didInsertElement() {
     this._super( ...arguments );
     schedule('afterRender', this, function(){
-      this.$().on( 'click', 'a', this.collapseNavbar.bind(this) );
+      $(this.element).on( 'click', 'a', this.collapseNavbar.bind(this) );
     });
   },
 
 
   willDestroyElement() {
     this._super( ...arguments );
-    this.$().off( 'click', 'a', this.collapseNavbar.bind(this) );
+    $(this.element).off( 'click', 'a', this.collapseNavbar.bind(this) );
   },
 
 
   collapseNavbar() {
-    let $collapse = this.$().find('.navbar-collapse');
+    let $collapse = $(this.element).find('.navbar-collapse');
     if ( $collapse.hasClass('show') ) { // If .navbar-collapse is "open"
       $collapse.collapse('hide');   // then close the navbar
     }

@@ -3,6 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { isHTMLSafe, htmlSafe } from '@ember/string';
+import $ from 'jquery';
 
 module('Integration | Component | froala-editor', function(hooks) {
   setupRenderingTest(hooks);
@@ -56,7 +57,7 @@ module('Integration | Component | froala-editor', function(hooks) {
   test('.fr-box class is applied', async function(assert) {
 
     this.set('runAssert', component => {
-      assert.ok(component.$(component.get('editorSelector')).hasClass('fr-box'));
+      assert.ok($(component.get('editorSelector'), component.element).hasClass('fr-box'));
     });
 
     await render(hbs`{{froala-editor on-initialized=(action runAssert)}}`);
@@ -149,7 +150,7 @@ module('Integration | Component | froala-editor', function(hooks) {
 
     this.set('runAssert', component => {
       // This is brittle, find a better way to detect that an option has been applied
-      assert.ok(component.$(component.get('editorSelector')).hasClass('red-theme'));
+      assert.ok($(component.get('editorSelector'), component.element).hasClass('red-theme'));
     });
 
     await render(hbs`{{froala-editor options=(hash theme="red") on-initialized=(action runAssert)}}`);
@@ -162,7 +163,7 @@ module('Integration | Component | froala-editor', function(hooks) {
 
     this.set('runAssert', component => {
       // This is brittle, find a better way to detect that an option has been applied
-      assert.ok(component.$(component.get('editorSelector')).hasClass('red-theme'));
+      assert.ok($(component.get('editorSelector'), component.element).hasClass('red-theme'));
     });
 
     await render(hbs`{{froala-editor theme="red" on-initialized=(action runAssert)}}`);
@@ -177,7 +178,7 @@ module('Integration | Component | froala-editor', function(hooks) {
 
     this.set('runAssert', component => {
       // This is brittle, find a better way to detect that an option has been applied
-      assert.ok(component.$(component.get('editorSelector')).hasClass('red-theme'));
+      assert.ok($(component.get('editorSelector'), component.element).hasClass('red-theme'));
     });
 
     await render(hbs`{{froala-editor foobar (action (mut foobar)) (hash theme="red") on-initialized=(action runAssert)}}`);
@@ -402,7 +403,7 @@ module('Integration | Component | froala-editor', function(hooks) {
     this.set('runAssert', component => {
       component.destroyEditor();
       this.set('foo', foobaz);
-      assert.equal(component.$(component.get('editorSelector')).html(), foobaz);
+      assert.equal($(component.get('editorSelector'), component.element).html(), foobaz);
     });
 
     await render(hbs`{{froala-editor content=foo on-initialized=(action runAssert)}}`);

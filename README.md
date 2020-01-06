@@ -795,12 +795,6 @@ likely require a different way to import components and helpers from this addon.
 Moving to `ember-cli-addon-docs` but just haven't gotten to it yet. The "old"
 docs site was not updated for 3.x so references here have been removed, for now.
 
-#### Why does this addon only work with recent ember versions, 3.13+?
-Due to the move to Glimmer Components, there is still work being done to support
-backwards compatibility prior to 3.13, mainly a `setComponentTemplate()`
-polyfill. Once that is complete, this addon *should* work going back to 3.4
-by using several other polyfills.
-
 
 Contributing
 ------------------------------------------------------------------------------

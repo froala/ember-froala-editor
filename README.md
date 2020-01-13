@@ -599,7 +599,7 @@ the argument name when passing in `@content`, `@update`, and `@options`.
 ```
 
 ### `@content` must now be a SafeString
-Previously the `content` could be a string or SafeString an the component would
+Previously the `content` could be a string or SafeString and the component would
 properly handle either type. Now the component requires that `@content` be a
 SafeString to indicate the incoming content has been properly guarded against
 potential XSS exploits. This addon now provides a couple helpers to work around
@@ -790,6 +790,12 @@ Therefore, breaking changes with this addon will be at minor releases
 (when there are any). While not every minor release has breaking changes,
 Embroider (addon v2 package format) will come at a minor release and will 
 likely require a different way to import components and helpers from this addon.
+
+### What happend to the 3.0.x versions?
+Due to Froala wanting to keep this addon version in alignment with the editor
+and embers move towards Ember Octane edition, this addon was in development
+during the editors 3.0.x versions. While you'll see betas under the 3.0.0 label
+it wasn't fully released until Froala released 3.1.0 of the editor.
 
 #### What happened to the docs site?
 Moving to `ember-cli-addon-docs` but just haven't gotten to it yet. The "old"

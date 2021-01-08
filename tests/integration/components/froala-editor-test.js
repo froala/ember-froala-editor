@@ -1,5 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
+import { next } from '@ember/runloop';
 import { htmlSafe } from '@ember/template';
 import { render, clearRender, settled, click, find, waitUntil } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
@@ -395,15 +396,20 @@ module('Integration | Component | froala-editor', function(hooks) {
 
 
   test('updated @disabled state is applied', async function(assert) {
+    let expectedAssertions = 1;
+    let assertionsRan = 0;
 
     this.set('disabled', false);
 
     this.set('enableDisabled', () => {
-      this.set('disabled', true);
+      next(this, () => {
+        this.set('disabled', true);
+      });
     });
 
     this.set('editOff', () => {
       assert.ok(true);
+      assertionsRan++;
     });
 
     await render(hbs`
@@ -414,25 +420,37 @@ module('Integration | Component | froala-editor', function(hooks) {
       />
     `);
 
+    await waitUntil(() => {
+      return assertionsRan >= expectedAssertions;
+    });
+
   });
 
 
   test('initial @disabled state does not double trigger the @on-edit-off callback', async function(assert) {
-    assert.expect(2);
+    let expectedAssertions = 2;
+    let assertionsRan = 0;
+    assert.expect(expectedAssertions);
 
     this.set('disabled', true);
 
     this.set('disableDisabled', () => {
-      this.set('disabled', false);
+      next(this, () => {
+        this.set('disabled', false);
+      });
     });
 
     this.set('editOn', () => {
       assert.ok(true);
-      this.set('disabled', true);
+      assertionsRan++;
+      next(this, () => {
+        this.set('disabled', true);
+      });
     });
 
     this.set('editOff', () => {
       assert.ok(true);
+      assertionsRan++;
     });
 
     await render(hbs`
@@ -443,6 +461,10 @@ module('Integration | Component | froala-editor', function(hooks) {
         @on-edit-off={{this.editOff}}
       />
     `);
+
+    await waitUntil(() => {
+      return assertionsRan >= expectedAssertions;
+    });
 
   });
 

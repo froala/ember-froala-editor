@@ -29,12 +29,12 @@ module.exports = {
     this._super.init.apply( this, arguments );
     let checker = new VersionChecker( this );
     checker.for('ember-cli').assertAbove(
-      '3.4.0',
-      'To use ember-froala-editor you must have ember-cli 3.4.0 or later!'
+      '3.16.0',
+      'To use ember-froala-editor you must have ember-cli 3.16.0 or later!'
     );
     checker.for('ember-source').assertAbove(
-      '3.4.0',
-      'To use ember-froala-editor you must have ember.js 3.4.0 or later!'
+      '3.16.0',
+      'To use ember-froala-editor you must have ember.js 3.16.0 or later!'
     );
   }, // init()
 

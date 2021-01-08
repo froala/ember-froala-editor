@@ -32,7 +32,7 @@ module.exports = {
       '3.4.0',
       'To use ember-froala-editor you must have ember-cli 3.4.0 or later!'
     );
-    checker.forEmber().assertAbove(
+    checker.for('ember-source').assertAbove(
       '3.4.0',
       'To use ember-froala-editor you must have ember.js 3.4.0 or later!'
     );

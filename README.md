@@ -432,7 +432,6 @@ properties and methods.
 3. Add [options][7] to the `options = {}` object or individually
 4. Add [event callbacks][8] with the `on-eventName` naming strategy
   * Note: Use the `@action` decorator to retain the component context
-5. Add a new template file to re-export the original template (see second code example below)
 
 ```js
 // app/components/froala-editor.js
@@ -448,11 +447,6 @@ export default class FroalaEditor extends FroalaEditorComponent {
   'on-eventName'(editor, ...args) {/* this = editor */}
   @action 'on-eventName'(editor, ...args) {/* this = component */}
 }
-```
-
-```js
-// app/templates/components/froala-editor.js
-export { default } from 'ember-froala-editor/templates/components/froala-editor';
 ```
 
 

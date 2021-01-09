@@ -1,1 +1,4 @@
-export { default, froalaMethod } from 'ember-froala-editor/helpers/froala-method';
+export {
+  default,
+  froalaMethod,
+} from 'ember-froala-editor/helpers/froala-method';

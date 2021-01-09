@@ -16,4 +16,6 @@ export function froalaArg(callback, ...partial) {
   return wrapper;
 }
 
-export default helper(([callback, ...partial]) => froalaArg(callback, ...partial));
+export default helper(([callback, ...partial]) =>
+  froalaArg(callback, ...partial)
+);

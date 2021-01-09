@@ -4,16 +4,26 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function (defaults) {
   let app = new EmberAddon(defaults, {
-
     'ember-froala-editor': {
-      plugins  : [
-        'align','char_counter','colors','emoticons','entities','font_family','font_size',
-        'line_breaker','link','lists','paragraph_format','special_characters','table','url'
+      plugins: [
+        'align',
+        'char_counter',
+        'colors',
+        'emoticons',
+        'entities',
+        'font_family',
+        'font_size',
+        'line_breaker',
+        'link',
+        'lists',
+        'paragraph_format',
+        'special_characters',
+        'table',
+        'url',
       ],
       languages: false,
-      themes   : true
-    }
-
+      themes: true,
+    },
   });
 
   /*

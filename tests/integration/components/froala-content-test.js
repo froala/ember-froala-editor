@@ -4,10 +4,10 @@ import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { htmlSafe } from '@ember/template';
 
-module('Integration | Component | froala-content', function(hooks) {
+module('Integration | Component | froala-content', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('.fr-view class is applied', async function(assert) {
+  test('.fr-view class is applied', async function (assert) {
     await render(hbs`<FroalaContent />`);
     assert.dom('div').hasClass('fr-view');
   });
@@ -21,21 +21,20 @@ module('Integration | Component | froala-content', function(hooks) {
   //   assert.dom('div').hasClass('foobar');
   // });
 
-  test('passed in id is applied', async function(assert) {
+  test('passed in id is applied', async function (assert) {
     await render(hbs`<FroalaContent id="myEditor" />`);
     assert.dom('#myEditor').exists();
   });
 
-  test('@content is output inside the block', async function(assert) {
-    this.set('content', htmlSafe('foobar'))
+  test('@content is output inside the block', async function (assert) {
+    this.set('content', htmlSafe('foobar'));
     await render(hbs`<FroalaContent @content={{this.content}} />`);
     assert.equal(this.element.textContent.trim(), 'foobar');
   });
 
-  test("block content is properly yield'ed", async function(assert) {
-    this.set('content', htmlSafe('foobar'))
+  test("block content is properly yield'ed", async function (assert) {
+    this.set('content', htmlSafe('foobar'));
     await render(hbs`<FroalaContent>{{this.content}}</FroalaContent>`);
     assert.equal(this.element.textContent.trim(), 'foobar');
   });
-
 });

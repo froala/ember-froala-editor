@@ -1,12 +1,15 @@
 import { module, test } from 'qunit';
 import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import { fillInFroalaEditor, getInFroalaEditor } from 'ember-froala-editor/test-support';
+import {
+  fillInFroalaEditor,
+  getInFroalaEditor,
+} from 'ember-froala-editor/test-support';
 
-module('Acceptance | test helpers test', function(hooks) {
+module('Acceptance | test helpers test', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('test getInFroalaEditor() and fillInFroalaEditor()', async function(assert) {
+  test('test getInFroalaEditor() and fillInFroalaEditor()', async function (assert) {
     assert.expect(3);
 
     await visit('/');
@@ -17,6 +20,5 @@ module('Acceptance | test helpers test', function(hooks) {
 
     // Test helpers throw when selector does not find an element
     assert.throws(() => getInFroalaEditor('#foobar'));
-
   });
 });

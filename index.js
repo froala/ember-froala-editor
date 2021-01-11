@@ -14,8 +14,8 @@ module.exports = {
   // Configure ember-auto-import to not do anything with froala-editor
   options: {
     autoImport: {
-      exclude: ['froala-editor']
-    }
+      exclude: ['froala-editor'],
+    },
   },
 
   // Addon build option defaults

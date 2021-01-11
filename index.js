@@ -11,6 +11,13 @@ var froalaPath = path.dirname(require.resolve('froala-editor/package.json'));
 module.exports = {
   name: require('./package').name,
 
+  // Configure ember-auto-import to not do anything with froala-editor
+  options: {
+    autoImport: {
+      exclude: ['froala-editor']
+    }
+  },
+
   // Addon build option defaults
   defaultOptions: {
     languages: false,

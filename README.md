@@ -1,7 +1,7 @@
 ember-froala-editor
 ==============================================================================
 
-[![Build Status](https://travis-ci.org/froala/ember-froala-editor.svg?branch=master)](https://travis-ci.org/froala/ember-froala-editor)
+[![Build Status](https://github.com/froala/ember-froala-editor/workflows/CI/badge.svg)](https://github.com/froala/ember-froala-editor/actions?query=workflow%3ACI)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-froala-editor.svg)](http://emberobserver.com/addons/ember-froala-editor)
 [![npm](https://img.shields.io/npm/v/ember-froala-editor.svg)](https://www.npmjs.com/package/ember-froala-editor)
 [![npm](https://img.shields.io/npm/dm/ember-froala-editor.svg)](https://www.npmjs.com/package/ember-froala-editor)

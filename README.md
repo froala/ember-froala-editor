@@ -785,15 +785,16 @@ Therefore, breaking changes with this addon will be at minor releases
 Embroider (addon v2 package format) will come at a minor release and will 
 likely require a different way to import components and helpers from this addon.
 
-### What happend to the 3.0.x versions?
+#### What happend to the 3.0 versions?
 Due to Froala wanting to keep this addon version in alignment with the editor
 and embers move towards Ember Octane edition, this addon was in development
-during the editors 3.0.x versions. While you'll see betas under the 3.0.0 label
-it wasn't fully released until Froala released 3.1.0 of the editor.
+during the editors 3.0-3.1 versions. While you'll see betas under the 3.0.0 label
+it wasn't fully released until Froala released 3.2.6 of the editor.
 
 #### What happened to the docs site?
-Moving to `ember-cli-addon-docs` but just haven't gotten to it yet. The "old"
-docs site was not updated for 3.x so references here have been removed, for now.
+Might move to `ember-cli-addon-docs` or whatever the community solution is but
+just haven't gotten to it yet. The "old" docs site was not updated for 3.x so
+references here have been removed, for now.
 
 
 Contributing

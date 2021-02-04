@@ -27,18 +27,18 @@ module.exports = {
 
   init() {
     this._super.init.apply(this, arguments);
-    let checker = new VersionChecker(this);
+    let checker = new VersionChecker(this.project);
     checker
       .for('ember-cli')
       .assertAbove(
         '3.15.0',
-        'To use ember-froala-editor you must have ember-cli 3.15.0 or later!'
+        `${this.name}: Minimum ember-cli version is 3.15.0`
       );
     checker
       .for('ember-source')
       .assertAbove(
         '3.15.0',
-        'To use ember-froala-editor you must have ember.js 3.15.0 or later!'
+        `${this.name}: Minimum ember.js version is 3.15.0`
       );
   }, // init()
 

@@ -31,14 +31,14 @@ module.exports = {
     checker
       .for('ember-cli')
       .assertAbove(
-        '3.13.0',
-        'To use ember-froala-editor you must have ember-cli 3.13.0 or later!'
+        '3.15.0',
+        'To use ember-froala-editor you must have ember-cli 3.15.0 or later!'
       );
     checker
       .for('ember-source')
       .assertAbove(
-        '3.13.0',
-        'To use ember-froala-editor you must have ember.js 3.13.0 or later!'
+        '3.15.0',
+        'To use ember-froala-editor you must have ember.js 3.15.0 or later!'
       );
   }, // init()
 

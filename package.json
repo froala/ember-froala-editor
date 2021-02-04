@@ -96,7 +96,7 @@
     "configPath": "tests/dummy/config",
     "demoURL": "http://www.emberwysiwygeditor.com/",
     "versionCompatibility": {
-      "ember": ">=3.13.0"
+      "ember": ">=3.15.0"
     }
   }
 }

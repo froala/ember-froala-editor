@@ -7,6 +7,7 @@ module('Unit | Helper | froala-html', function (hooks) {
   setupTest(hooks);
 
   test('helper function called with explicitly passed in editor', function (assert) {
+    assert.expect(1);
     let html = '<p>Foobar</p>';
     let editor = {
       // Mock an editor instance
@@ -23,6 +24,7 @@ module('Unit | Helper | froala-html', function (hooks) {
   });
 
   test('helper function called with called context as the editor', function (assert) {
+    assert.expect(1);
     let html = '<p>Foobar</p>';
     let editor = {
       // Mock an editor instance
@@ -40,6 +42,7 @@ module('Unit | Helper | froala-html', function (hooks) {
   });
 
   test('additional arguments passed into the helper are available to the setter', function (assert) {
+    assert.expect(1);
     let html = '<p>Foobar</p>';
     let editor = {
       // Mock an editor instance
@@ -57,6 +60,7 @@ module('Unit | Helper | froala-html', function (hooks) {
   });
 
   test('additional arguments passed into the closure are available to the setter', function (assert) {
+    assert.expect(1);
     let html = '<p>Foobar</p>';
     let editor = {
       // Mock an editor instance
@@ -96,6 +100,7 @@ module('Unit | Helper | froala-html', function (hooks) {
   });
 
   test('helper returns a strign when the returnSafeString named param is false', function (assert) {
+    assert.expect(1);
     let html = '<p>Foobar</p>';
     let editor = {
       // Mock an editor instance

@@ -18,6 +18,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   setupRenderingTest(hooks);
 
   test('@on-initialized event callback is triggered', async function (assert) {
+    assert.expect(1);
     this.set('initializedCallback', () => {
       assert.ok(true);
     });
@@ -29,6 +30,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('@on-initializationDelayed event callback is triggered when using the initOnClick option', async function (assert) {
+    assert.expect(1);
     this.set('initializedCallback', () => {
       assert.ok(true);
     });
@@ -42,6 +44,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('@on-initialized event action is fired after editor is clicked when using the initOnClick option', async function (assert) {
+    assert.expect(1);
     this.set('initializedCallback', () => {
       assert.ok(true);
     });
@@ -60,6 +63,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('@content changes while the editor is NOT initialized', async function (assert) {
+    assert.expect(1);
     let foobar = htmlSafe('<p>Foobar</p>');
     let foobaz = htmlSafe('<p>Foobaz</p>');
 
@@ -80,6 +84,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('@content changes while the editor is initialized', async function (assert) {
+    assert.expect(1);
     let foobar = htmlSafe('<p>Foobar</p>');
     let foobaz = htmlSafe('<p>Foobaz</p>');
 
@@ -99,6 +104,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('@updated setter called when content changes', async function (assert) {
+    assert.expect(1);
     let foobar = htmlSafe('<p>Foobar</p>');
     let foobaz = htmlSafe('<p>Foobaz</p>');
 
@@ -123,6 +129,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('@updated setter works with a different event name', async function (assert) {
+    assert.expect(1);
     let foobar = htmlSafe('<p>Foobar</p>');
     let foobaz = htmlSafe('<p>Foobaz</p>');
 
@@ -148,6 +155,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('@updated setter called when editor is destroyed but content changed', async function (assert) {
+    assert.expect(1);
     let foobar = htmlSafe('<p>Foobar</p>');
     let foobaz = htmlSafe('<p>Foobaz</p>');
 
@@ -200,6 +208,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('@on-destroy callback is triggered when un-rendered', async function (assert) {
+    assert.expect(1);
     this.set('destroyedCallback', () => {
       assert.ok(true);
     });
@@ -277,6 +286,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('extended defaultEventCallbacks are properly called', async function (assert) {
+    assert.expect(1);
     this.set('runAssert', () => {
       assert.ok(true);
     });
@@ -289,6 +299,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('overridden extended defaultEventCallbacks are properly called', async function (assert) {
+    assert.expect(1);
     this.set('runAssert', () => {
       assert.ok(true);
     });
@@ -301,6 +312,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('fillInFroalaEditor() triggers the @update callback', async function (assert) {
+    assert.expect(1);
     this.set('runAssert', () => {
       assert.ok(true);
     });
@@ -337,6 +349,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('initial @disabled state is applied', async function (assert) {
+    assert.expect(1);
     this.set('checkDisabledState', (editor) => {
       assert.ok(editor.edit.isDisabled());
     });
@@ -350,6 +363,7 @@ module('Integration | Component | froala-editor', function (hooks) {
   });
 
   test('updated @disabled state is applied', async function (assert) {
+    assert.expect(1);
     let expectedAssertions = 1;
     let assertionsRan = 0;
 

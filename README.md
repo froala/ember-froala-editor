@@ -18,7 +18,12 @@ Compatibility
 
 * Ember.js v3.15 or above
 * Ember CLI v3.15 or above
-* Node.js v10 or v12 and above
+* Node.js v12, v14, or v16 and above
+
+#### Note on Embroider compatibility
+
+Currently this addon is _not_ Ember Embroider compatible due to how Froala
+assest are imported into the build tree and does not use `ember-auto-import`.
 
 
 Installation
@@ -476,272 +481,19 @@ export default {
 ```
 
 
-Upgrading from 2.x
+Upgrading from 3.x
 ------------------------------------------------------------------------------
 
-In addition to the [Froala Editor changes][20] itself, this addon has changes
-between 2.x and 3.x. Mainly, the addon has been updated to use [Ember Octane][19]
-features and programing models. Here are the addon changes between 2.x and 3.x:
-
-### jQuery no longer a required dependency
-This is probably why you're looking at 3.x in the first place. :) The Froala
-Editor (and this addon) no longer requires jQuery so you can configure ember
-to not include it in your build:
-
-```bash
-ember feature:disable jquery-integration
-```
-
-### Import `FroalaEditor` instead of accessing from `$.FroalaEditor`
-With the removal of jQuery integration, the Froala Editor is instead importable
-from the `froala-editor` package. This will mostly impact any [custom elements][13]
-that are setup on [application initializers][17].
-
-**From**
-```js
-import $ from 'jquery';
-export function initialize(/* application */) {
-  $.FroalaEditor.RegisterCommand('myButton', {});
-};
-export default {
-  name: 'froala-custom',
-  initialize: initialize
-};
-```
-
-**To**
-```js
-import FroalaEditor from 'froala-editor';
-export function initialize(/* application */) {
-  FroalaEditor.RegisterCommand('myButton', {});
-};
-export default {
-  initialize
-};
-```
-
-### `ember-font-awesome` no longer an added dependency
-The Froala Editor 2.x series used FontAwesome icons but starting with 3.0
-they ship their own. Therefore this addon no longer adds `ember-font-awesome`
-to your projects dependencies and can remove if not needed elsewhere in your app:
-
-```bash
-npm uninstall ember-font-awesome --save-dev
-```
-
-### `<AngleBracket>` invocation style
-While not required, the Ember Octane programming model uses angle-bracket
-invocation style when using components. That means replace `{{}}` with `<>`
-and [classify][16] the component name. Putting this together;
-
-**From**
-```hbs
-{{froala-editor}}
-{{froala-content}}
-```
-
-**To**
-```hbs
-<FroalaEditor />
-<FroalaContent />
-```
-
-### Pass component attributes as `@arguments`
-While also an Ember Octane programming model, but also required with the move
-to Glimmer Components, component attributes must now be passed in as arguments.
-Simply add `@` to the beginning of the name.
-
-**From**
-```hbs
-{{froala-editor content=this.content}}
-{{froala-content content=this.content}}
-```
-
-**To**
-```hbs
-<FroalaEditor @content={{this.content}} />
-<FroalaContent @content={{this.content}} />
-```
-
-### Positional params no longer supported
-With the move to Glimmer Components, and using angle-bracket invocation,
-positional parameters are no longer supported. Instead, you must specify
-the argument name when passing in `@content`, `@update`, and `@options`.
-
-**From**
-```hbs
-{{froala-editor
-  this.content
-  (action (mut this.content))
-  (hash theme="gray")
-}}
-{{froala-content
-  this.content
-}}
-```
-
-**To**
-```hbs
-<FroalaEditor
-  @content={{this.content}}
-  @update={{fn (mut this.content)}}
-  @options={{hash theme="gray"}}
-/>
-<FroalaContent
-  @content={{this.content}}
-/>
-```
-
-### `@content` must now be a SafeString
-Previously the `content` could be a string or SafeString and the component would
-properly handle either type. Now the component requires that `@content` be a
-SafeString to indicate the incoming content has been properly guarded against
-potential XSS exploits. This addon now provides a couple helpers to work around
-this change but are opt-in only by importing them into your app (they are not
-automatically available). Take a look at the documentation for `{{html-safe}}`
-and `{{to-string}}` above. So if you still plan on using strings;
-
-**From**
-```hbs
-{{froala-editor
-  content=this.htmlString
-  update=(action (mut this.htmlString))
-}}
-```
-
-**To**
-```hbs
-<FroalaEditor
-  @content={{html-safe this.htmlString}}
-  @update={{to-string (fn (mut this.htmlSafe))}}
-/>
-```
-
-### `on-*-getHtml` callbacks replaced with `{{froala-html}}` helper
-The 2.x series of this addon provided a special way to get the editors current
-html/content as the first argument in action callbacks. This functionality has
-been moved to a template helper that will wrap your callback to provide the
-same functionality.
-
-**From**
-```hbs
-{{froala-editor on-blur-getHtml=(action (mut this.content))}}
-```
-
-**To**
-```hbs
-<FroalaEditor @on-blur={{froala-html (fn (mut this.content))}} />
-```
-
-### Event callbacks now passed the `editor` instead of `component`
-With closer integration with the Froala Editor (because it's not a jQuery
-plugin anymore), the editor instance is passed to event callbacks instead
-of the component instance.
-
-**From**
-```js
-function callback(component, ...params) {
-  let editor = component.get('editor');
-}
-```
-
-**To**
-```js
-function callback(editor, ...params) {
-  let component = editor.component;
-}
-```
-
-### Call methods directly on the editor instead of `method()` action
-Calling editor methods in the 2.x series required you to go through the jQuery
-integration, which the `{{froala-editor}}` component hid-away in the `method()`
-action. But with 3.0 you can call them directly on the editor instance.
-Additionally, you no longer need to deal with the Promise returned by `method()`!
-
-**From**
-```js
-function callback(component, ...args) {
-  let html = await component.method('html.get');
-}
-```
-
-**To**
-```js
-function callback(editor, ...args) {
-  let html = editor.html.get();
-}
-```
-
-### `tagName` no longer supported (at the moment)
-The `{{froala-editor}}` results in a `<div>` element but that previously could
-be changed with the `tagName` attribute. That is not supported out of the box
-with Glimmer Components but is [being worked on with an approved RFC][21].
-
-### Editor is no longer "wrapped"
-Previously the `{{froala-editor}}` was wrapped in two `<div>`'s, once with the
-component tag/element itself and another as the actual Froala Editor instance.
-With the move to Glimmer Components, this was no longer required to "contain"
-the editor DOM changes so now only a single `<div>` is used for the editor
-instance. This might effect any CSS styling that you may have done.
-
-**From**
-```css
-.froala-editor-container .froala-editor-instance {}
-```
-
-**To**
-```css
-.fr-box {}
-```
-
-Or apply your own class by passing in the `class` attribute;
-
-```hbs
-<FroalaEditor class="my-class-name" />
-```
-
-### Extending the editor is now class-based
-When extending the `<FroalaEditor>` component, it is now native class based
-instead of `EmberObject` based. Therefore, be sure to add properties and
-methods as such in the class instead of the object/hash way:
-
-**From**
-```js
-import FroalaEditorComponent from 'ember-froala-editor/components/froala-editor';
-export default FroalaEditorComponent.extend({
-  options: {},
-  'on-blur': function() {}
-});
-```
-
-**To**
-```js
-import FroalaEditorComponent from 'ember-froala-editor/components/froala-editor';
-export default class FroalaEditor extends FroalaEditorComponent {
-  options = {};
-  'on-blur'() {}
-}
-```
-
-### Special `reinit` method no longer available
-With 2.x there was a special `reinit` method on the `{{froala-editor}}`
-component that would destroy and re-initialize the editor. This was useful
-to make a "hide-on-blur" effect where the editor would go back to the
-`initOnClick` mode when the user focused away. If this is something you had
-used, and would like to see again, please open a new Issue on the repository.
-
-### `{{merged-hash}}` helper no longer imported into app build-tree
-While the `{{merged-hash}}` helper is still provided by this addon, it is no
-longer automatically imported for use in your app. Rather, you must create
-your own helper and re-export the addons helper. Take a look at the docs
-above for `{{merged-hash}}` importing details.
+No changes needed from an ember perspective. Installation and usage is still
+the same, but editor configuration options might have changed. See the Froala
+Editor docs for those details.
 
 
 FAQ
 ------------------------------------------------------------------------------
 
 #### Why can't I use the `{{on}}` modifier for Froala Editor events?
-With Froala Editor v3, it no longer triggers custom events on the DOM.
+Starting with Froala Editor v3, it no longer triggers custom events on the DOM.
 Instead, the new way is to pass callbacks into the `options.events` block,
 or use the `editor.events.on()` method. This is done for you with the
 `<FroalaEditor />` component by taking all  `@on-*` args and adding them
@@ -781,20 +533,7 @@ always go back on this decision but it was a good change to make at v3.
 Ex: `~3.0.0` instead of `^3.0.0`. Froala would like this addon (and other
 official integrations) to match versions of the main editor package. 
 Therefore, breaking changes with this addon will be at minor releases 
-(when there are any). While not every minor release has breaking changes,
-Embroider (addon v2 package format) will come at a minor release and will 
-likely require a different way to import components and helpers from this addon.
-
-#### What happend to the 3.0 versions?
-Due to Froala wanting to keep this addon version in alignment with the editor
-and embers move towards Ember Octane edition, this addon was in development
-during the editors 3.0-3.1 versions. While you'll see betas under the 3.0.0 label
-it wasn't fully released until Froala released 3.2.6 of the editor.
-
-#### What happened to the docs site?
-Might move to `ember-cli-addon-docs` or whatever the community solution is but
-just haven't gotten to it yet. The "old" docs site was not updated for 3.x so
-references here have been removed, for now.
+(when there are any).
 
 
 Contributing

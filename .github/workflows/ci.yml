@@ -40,7 +40,7 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: '10.x'
+  NODE_VERSION: '12.x'
 
 jobs:
   lint:
@@ -170,7 +170,7 @@ jobs:
   try-scenarios:
     name: Tests - ${{ matrix.ember-try-scenario }}
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.allow-failure }}
+    continue-on-error: true
     needs: test
 
     strategy:
@@ -181,12 +181,9 @@ jobs:
           ember-lts-3.16,
           ember-lts-3.20,
           ember-release,
-          ember-beta
+          ember-beta,
+          ember-canary
         ]
-        allow-failure: [false]
-        include:
-          - ember-try-scenario: ember-canary
-            allow-failure: true
 
     steps:
     - uses: actions/checkout@v2

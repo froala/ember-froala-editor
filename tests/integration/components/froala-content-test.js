@@ -12,14 +12,12 @@ module('Integration | Component | froala-content', function (hooks) {
     assert.dom('div').hasClass('fr-view');
   });
 
-  // Test fails on scenarios < ember 3.9
-  // https://github.com/rwjblue/ember-angle-bracket-invocation-polyfill/issues/62
-  // test('custom class names are applied', async function(assert) {
-  //   assert.expect(2);
-  //   await render(hbs`<FroalaContent class="foobar" />`);
-  //   assert.dom('div').hasClass('fr-view');
-  //   assert.dom('div').hasClass('foobar');
-  // });
+  test('custom class names are applied', async function (assert) {
+    assert.expect(2);
+    await render(hbs`<FroalaContent class="foobar" />`);
+    assert.dom('div').hasClass('fr-view');
+    assert.dom('div').hasClass('foobar');
+  });
 
   test('passed in id is applied', async function (assert) {
     await render(hbs`<FroalaContent id="myEditor" />`);

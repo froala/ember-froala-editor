@@ -45,6 +45,7 @@ module.exports = async function () {
           },
           devDependencies: {
             'ember-source': await getChannelURL('release'),
+            webpack: '^5.0.0',
           },
         },
       },
@@ -56,6 +57,7 @@ module.exports = async function () {
           },
           devDependencies: {
             'ember-source': await getChannelURL('beta'),
+            webpack: '^5.0.0',
           },
         },
       },
@@ -67,6 +69,7 @@ module.exports = async function () {
           },
           devDependencies: {
             'ember-source': await getChannelURL('canary'),
+            webpack: '^5.0.0',
           },
         },
       },

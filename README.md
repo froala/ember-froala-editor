@@ -51,7 +51,7 @@ multiple. For example, to include a few languages, all plugins and one theme;
 ```js
 // ember-cli-build.js
 // ... (snip)
-let app = new EmberAddon(defaults, {
+let app = new EmberApp(defaults, {
   'ember-froala-editor': {
     languages: ['es','fr','de'],
     plugins  : true,

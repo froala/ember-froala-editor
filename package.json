@@ -15,7 +15,7 @@
     "wysiwyg"
   ],
   "repository": "github:froala/ember-froala-editor",
-  "homepage": "http://www.emberwysiwygeditor.com/",
+  "homepage": "https://github.com/froala/ember-froala-editor#readme",
   "bugs": "https://github.com/froala/ember-froala-editor/issues",
   "license": "MIT",
   "contributors": [
@@ -46,7 +46,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@ember/render-modifiers": "^1.0.2",
+    "@ember/render-modifiers": "^2.0.0",
     "@glimmer/component": "^1.0.4",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
@@ -95,9 +95,9 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://www.emberwysiwygeditor.com/",
+    "demoURL": "https://github.com/froala/ember-froala-editor#readme",
     "versionCompatibility": {
-      "ember": ">=3.15.0"
+      "ember": ">=3.20.0"
     }
   }
 }

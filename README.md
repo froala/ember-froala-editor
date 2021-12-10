@@ -16,8 +16,8 @@ ember-froala-editor
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.15 or above
-* Ember CLI v3.15 or above
+* Ember.js v3.20 or above
+* Ember CLI v3.20 or above
 * Node.js v12, v14, or v16 and above
 
 #### Note on Embroider compatibility
@@ -485,8 +485,8 @@ Upgrading from 3.x
 ------------------------------------------------------------------------------
 
 No changes needed from an ember perspective. Installation and usage is still
-the same, but editor configuration options might have changed. See the Froala
-Editor docs for those details.
+the same, but editor configuration options might have changed. See the [Froala
+Editor docs](https://froala.com/wysiwyg-editor/changelog/) for those details.
 
 
 FAQ

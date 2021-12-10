@@ -31,14 +31,14 @@ module.exports = {
     checker
       .for('ember-cli')
       .assertAbove(
-        '3.14.3',
-        `${this.name}: Minimum ember-cli version is 3.15.0`
+        '3.19.0',
+        `${this.name}: Minimum ember-cli version is 3.20.0`
       );
     checker
       .for('ember-source')
       .assertAbove(
-        '3.14.3',
-        `${this.name}: Minimum ember.js version is 3.15.0`
+        '3.19.0',
+        `${this.name}: Minimum ember.js version is 3.20.0`
       );
   }, // init()
 

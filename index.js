@@ -1,28 +1,131 @@
 'use strict';
 
-// Module requirements
-var fs = require('fs');
-var path = require('path');
-var VersionChecker = require('ember-cli-version-checker');
+const VersionChecker = require('ember-cli-version-checker');
 
-// Resolve the froala-editor node path once..
-var froalaPath = path.dirname(require.resolve('froala-editor/package.json'));
+// Addon build option defaults
+const defaultOptions = {
+  languages: [],
+  plugins: [],
+  themes: [],
+};
+
+// Lists of assets to validate options against
+const validOptions = {
+  languages: [
+    'ar',
+    'bs',
+    'cs',
+    'da',
+    'de',
+    'el',
+    'en_ca',
+    'en_gb',
+    'es',
+    'et',
+    'fa',
+    'fi',
+    'fr',
+    'he',
+    'hr',
+    'hu',
+    'id',
+    'it',
+    'ja',
+    'ko',
+    'ku',
+    'me',
+    'nb',
+    'nl',
+    'pl',
+    'pt_br',
+    'pt_pt',
+    'ro',
+    'ru',
+    'sk',
+    'sl',
+    'sr',
+    'sv',
+    'th',
+    'tr',
+    'uk',
+    'vi',
+    'zh_cn',
+    'zh_tw',
+  ],
+  plugins: [
+    'align',
+    'char_counter',
+    'code_beautifier',
+    'code_view',
+    'colors',
+    'draggable',
+    'edit_in_popup',
+    'embedly',
+    'emoticons',
+    'entities',
+    'file',
+    'files_manager',
+    'font_awesome',
+    'font_family',
+    'font_size',
+    'forms',
+    'fullscreen',
+    'help',
+    'image',
+    'image_manager',
+    'image_tui',
+    'inline_class',
+    'inline_style',
+    'line_breaker',
+    'line_height',
+    'link',
+    'lists',
+    'markdown',
+    'paragraph_format',
+    'paragraph_style',
+    'print',
+    'quick_insert',
+    'quote',
+    'save',
+    'showdown',
+    'special_characters',
+    'spell_checker',
+    'table',
+    'track_changes',
+    'trim_video',
+    'url',
+    'video',
+    'word_paste',
+  ],
+  themes: ['dark', 'gray', 'royal'],
+};
 
 module.exports = {
   name: require('./package').name,
 
-  // Configure ember-auto-import to not do anything with froala-editor
   options: {
-    autoImport: {
-      exclude: ['froala-editor'],
+    '@embroider/macros': {
+      setOwnConfig: {},
     },
-  },
 
-  // Addon build option defaults
-  defaultOptions: {
-    languages: false,
-    plugins: false,
-    themes: false,
+    autoImport: {
+      skipBabel: [
+        {
+          package: 'froala-editor',
+          semverRange: '*',
+        },
+      ],
+    },
+
+    babel: {
+      plugins: [require.resolve('ember-auto-import/babel-plugin')],
+    },
+
+    // 'ember-froala-editor': {
+    //   languages: [],
+    //   plugins: [],
+    //   themes: [],
+    // },
   },
 
   init() {
@@ -43,7 +146,7 @@ module.exports = {
   }, // init()
 
   included(app) {
-    // https://ember-cli.com/extending/#addon-entry-point
+    // https://ember-cli.com/api/classes/addon#method_included
     this._super.included.apply(this, arguments);
 
     // For nested usage, build the options up through the entire tree,
@@ -57,134 +160,164 @@ module.exports = {
       }
     } while (current.parent.parent && (current = current.parent));
 
-    // Plugins default has recently changed, warn users
-    if (!Object.prototype.hasOwnProperty.call(appOptions, 'plugins')) {
-      this.ui.writeDeprecateLine(
-        `${this.name}: The default value for the 'plugins' option has change from 'true' to 'false'. ` +
-          `Please update '${this.name}.plugins' in 'ember-cli-build.js' to indicate which plugin(s) you need; ` +
-          'string = one plugin name, array = multiple plugin names, true = all plugins, false = no plugins.'
-      );
-    }
-
     // Build options by merging default options
     // with the apps ember-cli-build.js options
-    let options = Object.assign({}, this.defaultOptions, appOptions);
+    let options = Object.assign({}, defaultOptions, appOptions);
 
-    // When importing files, import from node_modules
-    let nodePath = path.join('node_modules', 'froala-editor');
-
-    // Import the base Froala Editor files
-    this.import(path.join(nodePath, 'js', 'froala_editor.min.js'));
-    this.import(path.join(nodePath, 'css', 'froala_editor.css'));
-    this.import(path.join(nodePath, 'css', 'froala_style.css'));
-
-    // Include the vendor shim to make froala-editor importable
-    this.import(path.join('vendor', 'shims', 'froala-editor.js'));
-
-    // Do not import anything else if in "fastboot mode"
-    if (typeof FastBoot !== 'undefined') {
-      return;
-    }
-
-    // Bucket for import list / details
-    let additionalAssets = [];
-
-    // Import the other Froala Editor files (when requested)
-    if (options.plugins && options.plugins !== []) {
-      additionalAssets.push({
-        label: 'Plugin(s)',
-        paths: [path.join('js', 'plugins'), path.join('js', 'third_party')],
-        files: options.plugins,
-        extension: '.min.js',
-      });
-      additionalAssets.push({
-        label: 'Plugin CSS',
-        paths: [path.join('css', 'plugins'), path.join('css', 'third_party')],
-        files: options.plugins,
-        extension: '.css',
-        optional: true,
-      });
-    }
-    if (options.languages && options.languages !== []) {
-      additionalAssets.push({
-        label: 'Language(s)',
-        paths: [path.join('js', 'languages')],
-        files: options.languages,
-        extension: '.js',
-      });
-    }
-    if (options.themes && options.themes !== []) {
-      additionalAssets.push({
-        label: 'Themes(s)',
-        paths: [path.join('css', 'themes')],
-        files: options.themes,
-        extension: '.css',
-      });
-    }
-
-    // Common logic to import plugins / languages / themes
-    additionalAssets.forEach((asset) => {
-      // List of files for the given path(s)
-      let pathFiles = {}; // key = filename, value = relative path with filename
-
-      // Build complete list of files in all paths
-      asset.paths.forEach((assetPath) => {
-        fs.readdirSync(path.join(froalaPath, assetPath)).forEach((fileName) => {
-          pathFiles[fileName] = path.join(assetPath, fileName);
-        });
-      });
-
-      // Bucket for missing files
-      let missingFiles = [];
-
-      // Convert the option value to an array,
-      // depending on the option type
-      if (typeof asset.files === 'boolean') {
-        // Generate a list of _all_ the available files
-        asset.files = Object.keys(pathFiles)
-          .map(function (file) {
-            return file.split('.')[0]; // remove extensions
-          })
-          .reduce(function (files, file) {
-            if (!files.includes(file)) files.push(file);
-            return files; // return a unique list
-          }, []);
-      } else if (typeof asset.files === 'string') {
-        asset.files = [asset.files];
-      } else if (!Array.isArray(asset.files)) {
+    // Transpose booleans and strings into array
+    ['languages', 'plugins', 'themes'].forEach((type) => {
+      if (Array.isArray(options[type])) {
+        // Good!
+      } else if (typeof options[type] === 'string') {
+        options[type] = [options[type]];
+      } else if (typeof options[type] === 'boolean') {
+        options[type] = options[type] ? validOptions[type] : [];
+      } else {
         throw new Error(
-          `${this.name}: ${asset.label} ` +
+          `${this.name}: ${type} ` +
             'option in ember-cli-build.js is an invalid type, ' +
             'ensure it is either a boolean (all or none), ' +
             'string (just one), or array (specific list)'
         );
       }
+    });
 
-      // Loop through each requested file
-      asset.files.forEach((file) => {
-        // Make sure the requested file exists
-        if (
-          !Object.prototype.hasOwnProperty.call(
-            pathFiles,
-            file + asset.extension
-          )
-        ) {
-          missingFiles.push(file);
-          return; // continue;
-        }
-
-        // Import the asset file
-        this.import(path.join(nodePath, pathFiles[file + asset.extension]));
-      }); // files.forEach()
-
-      // Display an error message if any required files are missing
-      if (missingFiles.length > 0 && !asset.optional) {
-        throw new Error(
-          `${this.name}: ${asset.label} ` +
-            'specified in ember-cli-build.js are missing, ' +
-            `make sure they are spelled correctly (${missingFiles.join(', ')})`
-        );
+    // Replace plugin "names" with filenames
+    options.plugins = options.plugins.map((plugin) => {
+      switch (plugin) {
+        /* eslint-disable prettier/prettier */
+        case 'charCounter': return 'char_counter';
+        case 'codeBeautifier': return 'code_beautifier';
+        case 'codeView': return 'code_view';
+        case 'editInPopup': return 'edit_in_popup';
+        case 'filesManager': return 'files_manager';
+        case 'fontAwesome': return 'font_awesome';
+        case 'fontFamily': return 'font_family';
+        case 'fontSize': return 'font_size';
+        case 'imageManager': return 'image_manager';
+        case 'imageTUI': return 'image_tui';
+        case 'inlineClass': return 'inline_class';
+        case 'inlineStyle': return 'inline_style';
+        case 'lineBreaker': return 'line_breaker';
+        case 'lineHeight': return 'line_height';
+        case 'paragraphFormat': return 'paragraph_format';
+        case 'paragraphStyle': return 'paragraph_style';
+        case 'quickInsert': return 'quick_insert';
+        case 'specialCharacters': return 'special_characters';
+        case 'spellChecker': return 'spell_checker';
+        case 'trackChanges': return 'track_changes';
+        case 'trimVideo': return 'trim_video';
+        case 'wordPaste': return 'word_paste';
+        default: return plugin;
+        /* eslint-enable prettier/prettier */
       }
-    }); // additionalAssets.forEach()
+    }); // options.plugins.map()
+
+    // Validate options to ensure that all assets are valid
+    ['languages', 'plugins', 'themes'].forEach((type) => {
+      options[type].forEach((asset) => {
+        if (!validOptions[type].includes(asset)) {
+          throw new Error(
+            `${this.name}: "${asset}" is an invalid option for ${type}.`
+          );
+        }
+      });
+    });
+
+    // Breakout each asset to be imported into a separate macro condition,
+    // macro conditions do not support "dynamic" `includes()` checking...
+    this.options['@embroider/macros'].setOwnConfig = {
+      // Language assets
+      importArLang: options.languages.includes('ar'),
+      importBsLang: options.languages.includes('bs'),
+      importCsLang: options.languages.includes('cs'),
+      importDaLang: options.languages.includes('da'),
+      importDeLang: options.languages.includes('de'),
+      importElLang: options.languages.includes('el'),
+      importEnCaLang: options.languages.includes('en_ca'),
+      importEnGbLang: options.languages.includes('en_gb'),
+      importEsLang: options.languages.includes('es'),
+      importEtLang: options.languages.includes('et'),
+      importFaLang: options.languages.includes('fa'),
+      importFiLang: options.languages.includes('fi'),
+      importFrLang: options.languages.includes('fr'),
+      importHeLang: options.languages.includes('he'),
+      importHrLang: options.languages.includes('hr'),
+      importHuLang: options.languages.includes('hu'),
+      importIdLang: options.languages.includes('id'),
+      importItLang: options.languages.includes('it'),
+      importJaLang: options.languages.includes('ja'),
+      importKoLang: options.languages.includes('ko'),
+      importKuLang: options.languages.includes('ku'),
+      importMeLang: options.languages.includes('me'),
+      importNbLang: options.languages.includes('nb'),
+      importNlLang: options.languages.includes('nl'),
+      importPlLang: options.languages.includes('pl'),
+      importPtBrLang: options.languages.includes('pt_br'),
+      importPtPtLang: options.languages.includes('pt_pt'),
+      importRoLang: options.languages.includes('ro'),
+      importRuLang: options.languages.includes('ru'),
+      importSkLang: options.languages.includes('sk'),
+      importSlLang: options.languages.includes('sl'),
+      importSrLang: options.languages.includes('sr'),
+      importSvLang: options.languages.includes('sv'),
+      importThLang: options.languages.includes('th'),
+      importTrLang: options.languages.includes('tr'),
+      importUkLang: options.languages.includes('uk'),
+      importViLang: options.languages.includes('vi'),
+      importZhCnLang: options.languages.includes('zh_cn'),
+      importZhTwLang: options.languages.includes('zh_tw'),
+
+      // Plugin assets
+      importAlignPlugin: true,
+      importCharCounterPlugin: options.plugins.includes('char_counter'),
+      importCodeBeautifierPlugin: options.plugins.includes('code_beautifier'),
+      importCodeViewPlugin: options.plugins.includes('code_view'),
+      importColorsPlugin: options.plugins.includes('colors'),
+      importDraggablePlugin: options.plugins.includes('draggable'),
+      importEditInPopupPlugin: options.plugins.includes('edit_in_popup'),
+      importEmbedlyPlugin: options.plugins.includes('embedly'),
+      importEmoticonsPlugin: options.plugins.includes('emoticons'),
+      importEntitiesPlugin: options.plugins.includes('entities'),
+      importFilePlugin: options.plugins.includes('file'),
+      importFilesManagerPlugin: options.plugins.includes('files_manager'),
+      importFontAwesomePlugin: options.plugins.includes('font_awesome'),
+      importFontFamilyPlugin: options.plugins.includes('font_family'),
+      importFontSizePlugin: options.plugins.includes('font_size'),
+      importFormsPlugin: options.plugins.includes('forms'),
+      importFullscreenPlugin: options.plugins.includes('fullscreen'),
+      importHelpPlugin: options.plugins.includes('help'),
+      importImagePlugin: options.plugins.includes('image'),
+      importImageManagerPlugin: options.plugins.includes('image_manager'),
+      importImageTuiPlugin: options.plugins.includes('image_tui'),
+      importInlineClassPlugin: options.plugins.includes('inline_class'),
+      importInlineStylePlugin: options.plugins.includes('inline_style'),
+      importLineBreakerPlugin: options.plugins.includes('line_breaker'),
+      importLineHeightPlugin: options.plugins.includes('line_height'),
+      importLinkPlugin: options.plugins.includes('link'),
+      importListsPlugin: options.plugins.includes('lists'),
+      importMarkdownPlugin: options.plugins.includes('markdown'),
+      importParagraphFormatPlugin: options.plugins.includes('paragraph_format'),
+      importParagraphStylePlugin: options.plugins.includes('paragraph_style'),
+      importPrintPlugin: options.plugins.includes('print'),
+      importQuickInsertPlugin: options.plugins.includes('quick_insert'),
+      importQuotePlugin: options.plugins.includes('quote'),
+      importSavePlugin: options.plugins.includes('save'),
+      importShowdownPlugin: options.plugins.includes('showdown'),
+      importSpecialCharactersPlugin:
+        options.plugins.includes('special_characters'),
+      importSpellCheckerPlugin: options.plugins.includes('spell_checker'),
+      importTablePlugin: options.plugins.includes('table'),
+      importTrackChangesPlugin: options.plugins.includes('track_changes'),
+      importTrimVideoPlugin: options.plugins.includes('trim_video'),
+      importUrlPlugin: options.plugins.includes('url'),
+      importVideoPlugin: options.plugins.includes('video'),
+      importWordPastePlugin: options.plugins.includes('word_paste'),
+
+      // Theme assets
+      importDarkTheme: options.themes.includes('dark'),
+      importGrayTheme: options.themes.includes('gray'),
+      importRoyalTheme: options.themes.includes('royal'),
+    }; // this.options['@embroider/macros'].setOwnConfig
   }, // included()
 }; // module.exports

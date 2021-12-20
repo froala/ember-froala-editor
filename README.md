@@ -19,11 +19,15 @@ Compatibility
 * Ember.js v3.20 or above
 * Ember CLI v3.20 or above
 * Node.js v12, v14, or v16 and above
+* __`ember-auto-import` v2 or above__
 
-#### Note on Embroider compatibility
+#### Note on `ember-auto-import` version requirement
 
-Currently this addon is _not_ Ember Embroider compatible due to how Froala
-assest are imported into the build tree and does not use `ember-auto-import`.
+This addon uses `ember-auto-import` v2, which also requires that consuming
+prjects also use `ember-auto-impot` v2. This is also a requirement for Ember v4.
+Outside of `npm install --save-dev ember-auto-import@^2.0.0 webpack`, take a
+look at the [upgrade guide](https://github.com/ef4/ember-auto-import/blob/main/docs/upgrade-guide-2.0.md)
+for further details when upgrading from `ember-auto-import` v1.
 
 
 Installation
@@ -215,7 +219,7 @@ but can also be done by calling `editor.html.get()` from within your callback.
 ```hbs
 <FroalaEditor
   @options={{hash events=(hash input=(froala-html this.callback))}}
-  @on-input={{froala-html this.callback}}
+  @on-input={{this.callback}}
 />
 ```
 
@@ -486,7 +490,8 @@ Upgrading from 3.x
 
 No changes needed from an ember perspective. Installation and usage is still
 the same, but editor configuration options might have changed. See the [Froala
-Editor docs](https://froala.com/wysiwyg-editor/changelog/) for those details.
+Editor docs](https://froala.com/wysiwyg-editor/docs/migrate-from-version-3-to-version-4/)
+for those details.
 
 
 FAQ
@@ -494,14 +499,14 @@ FAQ
 
 #### Why can't I use the `{{on}}` modifier for Froala Editor events?
 Starting with Froala Editor v3, it no longer triggers custom events on the DOM.
-Instead, the new way is to pass callbacks into the `options.events` block,
+Instead, the new way is to pass callbacks into the `options.events` object,
 or use the `editor.events.on()` method. This is done for you with the
 `<FroalaEditor />` component by taking all  `@on-*` args and adding them
 to the editor using the `editor.events.on()` method.
 
 #### Why can't I customize the editor `tagName`?
 With the move to Glimmer Components, the `tagName` is no longer customized
-through the component class. Rather, the forthcoming `(element)` helper
+through the component class. Rather, the forthcoming(?) `(element)` helper
 will fill this need but it is not released in Ember.js proper yet. Once it is,
 you'll be able to customize the emitted DOM Element using the `@tagName` argument.
 Just to note, the Froala Editor itself modifies the DOM quite a bit, so the
@@ -532,8 +537,9 @@ always go back on this decision but it was a good change to make at v3.
 #### Why is it recommended to depend upon a minor version and not major?
 Ex: `~3.0.0` instead of `^3.0.0`. Froala would like this addon (and other
 official integrations) to match versions of the main editor package. 
-Therefore, breaking changes with this addon will be at minor releases 
-(when there are any).
+While we try to withold breaking changes to a major release, there are times
+where changes in the Ember ecosystem require changes to the addon, before the
+next major release of the Froala Editor (we note these in the release notes).
 
 
 Contributing

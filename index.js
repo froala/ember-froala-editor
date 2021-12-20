@@ -120,12 +120,6 @@ module.exports = {
     babel: {
       plugins: [require.resolve('ember-auto-import/babel-plugin')],
     },
-
-    // 'ember-froala-editor': {
-    //   languages: [],
-    //   plugins: [],
-    //   themes: [],
-    // },
   },
 
   init() {
@@ -226,98 +220,99 @@ module.exports = {
 
     // Breakout each asset to be imported into a separate macro condition,
     // macro conditions do not support "dynamic" `includes()` checking...
-    this.options['@embroider/macros'].setOwnConfig = {
-      // Language assets
-      importArLang: options.languages.includes('ar'),
-      importBsLang: options.languages.includes('bs'),
-      importCsLang: options.languages.includes('cs'),
-      importDaLang: options.languages.includes('da'),
-      importDeLang: options.languages.includes('de'),
-      importElLang: options.languages.includes('el'),
-      importEnCaLang: options.languages.includes('en_ca'),
-      importEnGbLang: options.languages.includes('en_gb'),
-      importEsLang: options.languages.includes('es'),
-      importEtLang: options.languages.includes('et'),
-      importFaLang: options.languages.includes('fa'),
-      importFiLang: options.languages.includes('fi'),
-      importFrLang: options.languages.includes('fr'),
-      importHeLang: options.languages.includes('he'),
-      importHrLang: options.languages.includes('hr'),
-      importHuLang: options.languages.includes('hu'),
-      importIdLang: options.languages.includes('id'),
-      importItLang: options.languages.includes('it'),
-      importJaLang: options.languages.includes('ja'),
-      importKoLang: options.languages.includes('ko'),
-      importKuLang: options.languages.includes('ku'),
-      importMeLang: options.languages.includes('me'),
-      importNbLang: options.languages.includes('nb'),
-      importNlLang: options.languages.includes('nl'),
-      importPlLang: options.languages.includes('pl'),
-      importPtBrLang: options.languages.includes('pt_br'),
-      importPtPtLang: options.languages.includes('pt_pt'),
-      importRoLang: options.languages.includes('ro'),
-      importRuLang: options.languages.includes('ru'),
-      importSkLang: options.languages.includes('sk'),
-      importSlLang: options.languages.includes('sl'),
-      importSrLang: options.languages.includes('sr'),
-      importSvLang: options.languages.includes('sv'),
-      importThLang: options.languages.includes('th'),
-      importTrLang: options.languages.includes('tr'),
-      importUkLang: options.languages.includes('uk'),
-      importViLang: options.languages.includes('vi'),
-      importZhCnLang: options.languages.includes('zh_cn'),
-      importZhTwLang: options.languages.includes('zh_tw'),
+    /* eslint-disable prettier/prettier */
+    
+    // Language assets
+    this.options['@embroider/macros'].setOwnConfig.importArLang = options.languages.includes('ar');
+    this.options['@embroider/macros'].setOwnConfig.importBsLang = options.languages.includes('bs');
+    this.options['@embroider/macros'].setOwnConfig.importCsLang = options.languages.includes('cs');
+    this.options['@embroider/macros'].setOwnConfig.importDaLang = options.languages.includes('da');
+    this.options['@embroider/macros'].setOwnConfig.importDeLang = options.languages.includes('de');
+    this.options['@embroider/macros'].setOwnConfig.importElLang = options.languages.includes('el');
+    this.options['@embroider/macros'].setOwnConfig.importEnCaLang = options.languages.includes('en_ca');
+    this.options['@embroider/macros'].setOwnConfig.importEnGbLang = options.languages.includes('en_gb');
+    this.options['@embroider/macros'].setOwnConfig.importEsLang = options.languages.includes('es');
+    this.options['@embroider/macros'].setOwnConfig.importEtLang = options.languages.includes('et');
+    this.options['@embroider/macros'].setOwnConfig.importFaLang = options.languages.includes('fa');
+    this.options['@embroider/macros'].setOwnConfig.importFiLang = options.languages.includes('fi');
+    this.options['@embroider/macros'].setOwnConfig.importFrLang = options.languages.includes('fr');
+    this.options['@embroider/macros'].setOwnConfig.importHeLang = options.languages.includes('he');
+    this.options['@embroider/macros'].setOwnConfig.importHrLang = options.languages.includes('hr');
+    this.options['@embroider/macros'].setOwnConfig.importHuLang = options.languages.includes('hu');
+    this.options['@embroider/macros'].setOwnConfig.importIdLang = options.languages.includes('id');
+    this.options['@embroider/macros'].setOwnConfig.importItLang = options.languages.includes('it');
+    this.options['@embroider/macros'].setOwnConfig.importJaLang = options.languages.includes('ja');
+    this.options['@embroider/macros'].setOwnConfig.importKoLang = options.languages.includes('ko');
+    this.options['@embroider/macros'].setOwnConfig.importKuLang = options.languages.includes('ku');
+    this.options['@embroider/macros'].setOwnConfig.importMeLang = options.languages.includes('me');
+    this.options['@embroider/macros'].setOwnConfig.importNbLang = options.languages.includes('nb');
+    this.options['@embroider/macros'].setOwnConfig.importNlLang = options.languages.includes('nl');
+    this.options['@embroider/macros'].setOwnConfig.importPlLang = options.languages.includes('pl');
+    this.options['@embroider/macros'].setOwnConfig.importPtBrLang = options.languages.includes('pt_br');
+    this.options['@embroider/macros'].setOwnConfig.importPtPtLang = options.languages.includes('pt_pt');
+    this.options['@embroider/macros'].setOwnConfig.importRoLang = options.languages.includes('ro');
+    this.options['@embroider/macros'].setOwnConfig.importRuLang = options.languages.includes('ru');
+    this.options['@embroider/macros'].setOwnConfig.importSkLang = options.languages.includes('sk');
+    this.options['@embroider/macros'].setOwnConfig.importSlLang = options.languages.includes('sl');
+    this.options['@embroider/macros'].setOwnConfig.importSrLang = options.languages.includes('sr');
+    this.options['@embroider/macros'].setOwnConfig.importSvLang = options.languages.includes('sv');
+    this.options['@embroider/macros'].setOwnConfig.importThLang = options.languages.includes('th');
+    this.options['@embroider/macros'].setOwnConfig.importTrLang = options.languages.includes('tr');
+    this.options['@embroider/macros'].setOwnConfig.importUkLang = options.languages.includes('uk');
+    this.options['@embroider/macros'].setOwnConfig.importViLang = options.languages.includes('vi');
+    this.options['@embroider/macros'].setOwnConfig.importZhCnLang = options.languages.includes('zh_cn');
+    this.options['@embroider/macros'].setOwnConfig.importZhTwLang = options.languages.includes('zh_tw');
 
-      // Plugin assets
-      importAlignPlugin: true,
-      importCharCounterPlugin: options.plugins.includes('char_counter'),
-      importCodeBeautifierPlugin: options.plugins.includes('code_beautifier'),
-      importCodeViewPlugin: options.plugins.includes('code_view'),
-      importColorsPlugin: options.plugins.includes('colors'),
-      importDraggablePlugin: options.plugins.includes('draggable'),
-      importEditInPopupPlugin: options.plugins.includes('edit_in_popup'),
-      importEmbedlyPlugin: options.plugins.includes('embedly'),
-      importEmoticonsPlugin: options.plugins.includes('emoticons'),
-      importEntitiesPlugin: options.plugins.includes('entities'),
-      importFilePlugin: options.plugins.includes('file'),
-      importFilesManagerPlugin: options.plugins.includes('files_manager'),
-      importFontAwesomePlugin: options.plugins.includes('font_awesome'),
-      importFontFamilyPlugin: options.plugins.includes('font_family'),
-      importFontSizePlugin: options.plugins.includes('font_size'),
-      importFormsPlugin: options.plugins.includes('forms'),
-      importFullscreenPlugin: options.plugins.includes('fullscreen'),
-      importHelpPlugin: options.plugins.includes('help'),
-      importImagePlugin: options.plugins.includes('image'),
-      importImageManagerPlugin: options.plugins.includes('image_manager'),
-      importImageTuiPlugin: options.plugins.includes('image_tui'),
-      importInlineClassPlugin: options.plugins.includes('inline_class'),
-      importInlineStylePlugin: options.plugins.includes('inline_style'),
-      importLineBreakerPlugin: options.plugins.includes('line_breaker'),
-      importLineHeightPlugin: options.plugins.includes('line_height'),
-      importLinkPlugin: options.plugins.includes('link'),
-      importListsPlugin: options.plugins.includes('lists'),
-      importMarkdownPlugin: options.plugins.includes('markdown'),
-      importParagraphFormatPlugin: options.plugins.includes('paragraph_format'),
-      importParagraphStylePlugin: options.plugins.includes('paragraph_style'),
-      importPrintPlugin: options.plugins.includes('print'),
-      importQuickInsertPlugin: options.plugins.includes('quick_insert'),
-      importQuotePlugin: options.plugins.includes('quote'),
-      importSavePlugin: options.plugins.includes('save'),
-      importShowdownPlugin: options.plugins.includes('showdown'),
-      importSpecialCharactersPlugin:
-        options.plugins.includes('special_characters'),
-      importSpellCheckerPlugin: options.plugins.includes('spell_checker'),
-      importTablePlugin: options.plugins.includes('table'),
-      importTrackChangesPlugin: options.plugins.includes('track_changes'),
-      importTrimVideoPlugin: options.plugins.includes('trim_video'),
-      importUrlPlugin: options.plugins.includes('url'),
-      importVideoPlugin: options.plugins.includes('video'),
-      importWordPastePlugin: options.plugins.includes('word_paste'),
+    // Plugin assets
+    this.options['@embroider/macros'].setOwnConfig.importAlignPlugin = options.plugins.includes('align');
+    this.options['@embroider/macros'].setOwnConfig.importCharCounterPlugin = options.plugins.includes('char_counter');
+    this.options['@embroider/macros'].setOwnConfig.importCodeBeautifierPlugin = options.plugins.includes('code_beautifier');
+    this.options['@embroider/macros'].setOwnConfig.importCodeViewPlugin = options.plugins.includes('code_view');
+    this.options['@embroider/macros'].setOwnConfig.importColorsPlugin = options.plugins.includes('colors');
+    this.options['@embroider/macros'].setOwnConfig.importDraggablePlugin = options.plugins.includes('draggable');
+    this.options['@embroider/macros'].setOwnConfig.importEditInPopupPlugin = options.plugins.includes('edit_in_popup');
+    this.options['@embroider/macros'].setOwnConfig.importEmbedlyPlugin = options.plugins.includes('embedly');
+    this.options['@embroider/macros'].setOwnConfig.importEmoticonsPlugin = options.plugins.includes('emoticons');
+    this.options['@embroider/macros'].setOwnConfig.importEntitiesPlugin = options.plugins.includes('entities');
+    this.options['@embroider/macros'].setOwnConfig.importFilePlugin = options.plugins.includes('file');
+    this.options['@embroider/macros'].setOwnConfig.importFilesManagerPlugin = options.plugins.includes('files_manager');
+    this.options['@embroider/macros'].setOwnConfig.importFontAwesomePlugin = options.plugins.includes('font_awesome');
+    this.options['@embroider/macros'].setOwnConfig.importFontFamilyPlugin = options.plugins.includes('font_family');
+    this.options['@embroider/macros'].setOwnConfig.importFontSizePlugin = options.plugins.includes('font_size');
+    this.options['@embroider/macros'].setOwnConfig.importFormsPlugin = options.plugins.includes('forms');
+    this.options['@embroider/macros'].setOwnConfig.importFullscreenPlugin = options.plugins.includes('fullscreen');
+    this.options['@embroider/macros'].setOwnConfig.importHelpPlugin = options.plugins.includes('help');
+    this.options['@embroider/macros'].setOwnConfig.importImagePlugin = options.plugins.includes('image');
+    this.options['@embroider/macros'].setOwnConfig.importImageManagerPlugin = options.plugins.includes('image_manager');
+    this.options['@embroider/macros'].setOwnConfig.importImageTuiPlugin = options.plugins.includes('image_tui');
+    this.options['@embroider/macros'].setOwnConfig.importInlineClassPlugin = options.plugins.includes('inline_class');
+    this.options['@embroider/macros'].setOwnConfig.importInlineStylePlugin = options.plugins.includes('inline_style');
+    this.options['@embroider/macros'].setOwnConfig.importLineBreakerPlugin = options.plugins.includes('line_breaker');
+    this.options['@embroider/macros'].setOwnConfig.importLineHeightPlugin = options.plugins.includes('line_height');
+    this.options['@embroider/macros'].setOwnConfig.importLinkPlugin = options.plugins.includes('link');
+    this.options['@embroider/macros'].setOwnConfig.importListsPlugin = options.plugins.includes('lists');
+    this.options['@embroider/macros'].setOwnConfig.importMarkdownPlugin = options.plugins.includes('markdown');
+    this.options['@embroider/macros'].setOwnConfig.importParagraphFormatPlugin = options.plugins.includes('paragraph_format');
+    this.options['@embroider/macros'].setOwnConfig.importParagraphStylePlugin = options.plugins.includes('paragraph_style');
+    this.options['@embroider/macros'].setOwnConfig.importPrintPlugin = options.plugins.includes('print');
+    this.options['@embroider/macros'].setOwnConfig.importQuickInsertPlugin = options.plugins.includes('quick_insert');
+    this.options['@embroider/macros'].setOwnConfig.importQuotePlugin = options.plugins.includes('quote');
+    this.options['@embroider/macros'].setOwnConfig.importSavePlugin = options.plugins.includes('save');
+    this.options['@embroider/macros'].setOwnConfig.importShowdownPlugin = options.plugins.includes('showdown');
+    this.options['@embroider/macros'].setOwnConfig.importSpecialCharactersPlugin = options.plugins.includes('special_characters');
+    this.options['@embroider/macros'].setOwnConfig.importSpellCheckerPlugin = options.plugins.includes('spell_checker');
+    this.options['@embroider/macros'].setOwnConfig.importTablePlugin = options.plugins.includes('table');
+    this.options['@embroider/macros'].setOwnConfig.importTrackChangesPlugin = options.plugins.includes('track_changes');
+    this.options['@embroider/macros'].setOwnConfig.importTrimVideoPlugin = options.plugins.includes('trim_video');
+    this.options['@embroider/macros'].setOwnConfig.importUrlPlugin = options.plugins.includes('url');
+    this.options['@embroider/macros'].setOwnConfig.importVideoPlugin = options.plugins.includes('video');
+    this.options['@embroider/macros'].setOwnConfig.importWordPastePlugin = options.plugins.includes('word_paste');
 
-      // Theme assets
-      importDarkTheme: options.themes.includes('dark'),
-      importGrayTheme: options.themes.includes('gray'),
-      importRoyalTheme: options.themes.includes('royal'),
-    }; // this.options['@embroider/macros'].setOwnConfig
+    // Theme assets
+    this.options['@embroider/macros'].setOwnConfig.importDarkTheme = options.themes.includes('dark');
+    this.options['@embroider/macros'].setOwnConfig.importGrayTheme = options.themes.includes('gray');
+    this.options['@embroider/macros'].setOwnConfig.importRoyalTheme = options.themes.includes('royal');
+
+    /* eslint-enable prettier/prettier */
   }, // included()
 }; // module.exports

@@ -3,7 +3,7 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 import { assign } from '@ember/polyfills';
 import { isHTMLSafe } from '@ember/template';
-import { getOwnConfig, macroCondition } from '@embroider/macros';
+import { getOwnConfig, macroCondition, importSync } from '@embroider/macros';
 import Component from '@glimmer/component';
 import { froalaArg } from '../helpers/froala-arg';
 import { froalaHtml } from '../helpers/froala-html';
@@ -12,285 +12,285 @@ import 'froala-editor/css/froala_editor.min.css';
 
 // Import optional language files
 if (macroCondition(getOwnConfig().importArLang)) {
-  import('froala-editor/js/languages/ar.js');
+  importSync('froala-editor/js/languages/ar.js');
 }
 if (macroCondition(getOwnConfig().importBsLang)) {
-  import('froala-editor/js/languages/bs.js');
+  importSync('froala-editor/js/languages/bs.js');
 }
 if (macroCondition(getOwnConfig().importCsLang)) {
-  import('froala-editor/js/languages/cs.js');
+  importSync('froala-editor/js/languages/cs.js');
 }
 if (macroCondition(getOwnConfig().importDaLang)) {
-  import('froala-editor/js/languages/da.js');
+  importSync('froala-editor/js/languages/da.js');
 }
 if (macroCondition(getOwnConfig().importDeLang)) {
-  import('froala-editor/js/languages/de.js');
+  importSync('froala-editor/js/languages/de.js');
 }
 if (macroCondition(getOwnConfig().importElLang)) {
-  import('froala-editor/js/languages/el.js');
+  importSync('froala-editor/js/languages/el.js');
 }
 if (macroCondition(getOwnConfig().importEnCaLang)) {
-  import('froala-editor/js/languages/en_ca.js');
+  importSync('froala-editor/js/languages/en_ca.js');
 }
 if (macroCondition(getOwnConfig().importEnGbLang)) {
-  import('froala-editor/js/languages/en_gb.js');
+  importSync('froala-editor/js/languages/en_gb.js');
 }
 if (macroCondition(getOwnConfig().importEsLang)) {
-  import('froala-editor/js/languages/es.js');
+  importSync('froala-editor/js/languages/es.js');
 }
 if (macroCondition(getOwnConfig().importEtLang)) {
-  import('froala-editor/js/languages/et.js');
+  importSync('froala-editor/js/languages/et.js');
 }
 if (macroCondition(getOwnConfig().importFaLang)) {
-  import('froala-editor/js/languages/fa.js');
+  importSync('froala-editor/js/languages/fa.js');
 }
 if (macroCondition(getOwnConfig().importFiLang)) {
-  import('froala-editor/js/languages/fi.js');
+  importSync('froala-editor/js/languages/fi.js');
 }
 if (macroCondition(getOwnConfig().importFrLang)) {
-  import('froala-editor/js/languages/fr.js');
+  importSync('froala-editor/js/languages/fr.js');
 }
 if (macroCondition(getOwnConfig().importHeLang)) {
-  import('froala-editor/js/languages/he.js');
+  importSync('froala-editor/js/languages/he.js');
 }
 if (macroCondition(getOwnConfig().importHrLang)) {
-  import('froala-editor/js/languages/hr.js');
+  importSync('froala-editor/js/languages/hr.js');
 }
 if (macroCondition(getOwnConfig().importHuLang)) {
-  import('froala-editor/js/languages/hu.js');
+  importSync('froala-editor/js/languages/hu.js');
 }
 if (macroCondition(getOwnConfig().importIdLang)) {
-  import('froala-editor/js/languages/id.js');
+  importSync('froala-editor/js/languages/id.js');
 }
 if (macroCondition(getOwnConfig().importItLang)) {
-  import('froala-editor/js/languages/it.js');
+  importSync('froala-editor/js/languages/it.js');
 }
 if (macroCondition(getOwnConfig().importJaLang)) {
-  import('froala-editor/js/languages/ja.js');
+  importSync('froala-editor/js/languages/ja.js');
 }
 if (macroCondition(getOwnConfig().importKoLang)) {
-  import('froala-editor/js/languages/ko.js');
+  importSync('froala-editor/js/languages/ko.js');
 }
 if (macroCondition(getOwnConfig().importKuLang)) {
-  import('froala-editor/js/languages/ku.js');
+  importSync('froala-editor/js/languages/ku.js');
 }
 if (macroCondition(getOwnConfig().importMeLang)) {
-  import('froala-editor/js/languages/me.js');
+  importSync('froala-editor/js/languages/me.js');
 }
 if (macroCondition(getOwnConfig().importNbLang)) {
-  import('froala-editor/js/languages/nb.js');
+  importSync('froala-editor/js/languages/nb.js');
 }
 if (macroCondition(getOwnConfig().importNlLang)) {
-  import('froala-editor/js/languages/nl.js');
+  importSync('froala-editor/js/languages/nl.js');
 }
 if (macroCondition(getOwnConfig().importPlLang)) {
-  import('froala-editor/js/languages/pl.js');
+  importSync('froala-editor/js/languages/pl.js');
 }
 if (macroCondition(getOwnConfig().importPtBrLang)) {
-  import('froala-editor/js/languages/pt_br.js');
+  importSync('froala-editor/js/languages/pt_br.js');
 }
 if (macroCondition(getOwnConfig().importPtPtLang)) {
-  import('froala-editor/js/languages/pt_pt.js');
+  importSync('froala-editor/js/languages/pt_pt.js');
 }
 if (macroCondition(getOwnConfig().importRoLang)) {
-  import('froala-editor/js/languages/ro.js');
+  importSync('froala-editor/js/languages/ro.js');
 }
 if (macroCondition(getOwnConfig().importRuLang)) {
-  import('froala-editor/js/languages/ru.js');
+  importSync('froala-editor/js/languages/ru.js');
 }
 if (macroCondition(getOwnConfig().importSkLang)) {
-  import('froala-editor/js/languages/sk.js');
+  importSync('froala-editor/js/languages/sk.js');
 }
 if (macroCondition(getOwnConfig().importSlLang)) {
-  import('froala-editor/js/languages/sl.js');
+  importSync('froala-editor/js/languages/sl.js');
 }
 if (macroCondition(getOwnConfig().importSrLang)) {
-  import('froala-editor/js/languages/sr.js');
+  importSync('froala-editor/js/languages/sr.js');
 }
 if (macroCondition(getOwnConfig().importSvLang)) {
-  import('froala-editor/js/languages/sv.js');
+  importSync('froala-editor/js/languages/sv.js');
 }
 if (macroCondition(getOwnConfig().importThLang)) {
-  import('froala-editor/js/languages/th.js');
+  importSync('froala-editor/js/languages/th.js');
 }
 if (macroCondition(getOwnConfig().importTrLang)) {
-  import('froala-editor/js/languages/tr.js');
+  importSync('froala-editor/js/languages/tr.js');
 }
 if (macroCondition(getOwnConfig().importUkLang)) {
-  import('froala-editor/js/languages/uk.js');
+  importSync('froala-editor/js/languages/uk.js');
 }
 if (macroCondition(getOwnConfig().importViLang)) {
-  import('froala-editor/js/languages/vi.js');
+  importSync('froala-editor/js/languages/vi.js');
 }
 if (macroCondition(getOwnConfig().importZhCnLang)) {
-  import('froala-editor/js/languages/zh_cn.js');
+  importSync('froala-editor/js/languages/zh_cn.js');
 }
 if (macroCondition(getOwnConfig().importZhTwLang)) {
-  import('froala-editor/js/languages/zh_tw.js');
+  importSync('froala-editor/js/languages/zh_tw.js');
 }
 
 // Import optional plugins
 if (macroCondition(getOwnConfig().importAlignPlugin)) {
-  import('froala-editor/js/plugins/align.min.js');
+  importSync('froala-editor/js/plugins/align.min.js');
 }
 if (macroCondition(getOwnConfig().importCharCounterPlugin)) {
-  import('froala-editor/js/plugins/char_counter.min.js');
-  import('froala-editor/css/plugins/char_counter.min.css');
+  importSync('froala-editor/js/plugins/char_counter.min.js');
+  importSync('froala-editor/css/plugins/char_counter.min.css');
 }
 if (macroCondition(getOwnConfig().importCodeBeautifierPlugin)) {
-  import('froala-editor/js/plugins/code_beautifier.min.js');
+  importSync('froala-editor/js/plugins/code_beautifier.min.js');
 }
 if (macroCondition(getOwnConfig().importCodeViewPlugin)) {
-  import('froala-editor/js/plugins/code_view.min.js');
-  import('froala-editor/css/plugins/code_view.min.css');
+  importSync('froala-editor/js/plugins/code_view.min.js');
+  importSync('froala-editor/css/plugins/code_view.min.css');
 }
 if (macroCondition(getOwnConfig().importColorsPlugin)) {
-  import('froala-editor/js/plugins/colors.min.js');
-  import('froala-editor/css/plugins/colors.min.css');
+  importSync('froala-editor/js/plugins/colors.min.js');
+  importSync('froala-editor/css/plugins/colors.min.css');
 }
 if (macroCondition(getOwnConfig().importDraggablePlugin)) {
-  import('froala-editor/js/plugins/draggable.min.js');
-  import('froala-editor/css/plugins/draggable.min.css');
+  importSync('froala-editor/js/plugins/draggable.min.js');
+  importSync('froala-editor/css/plugins/draggable.min.css');
 }
 if (macroCondition(getOwnConfig().importEditInPopupPlugin)) {
-  import('froala-editor/js/plugins/edit_in_popup.min.js');
+  importSync('froala-editor/js/plugins/edit_in_popup.min.js');
 }
 if (macroCondition(getOwnConfig().importEmbedlyPlugin)) {
-  import('froala-editor/js/third_party/embedly.min.js');
-  import('froala-editor/css/third_party/embedly.min.css');
+  importSync('froala-editor/js/third_party/embedly.min.js');
+  importSync('froala-editor/css/third_party/embedly.min.css');
 }
 if (macroCondition(getOwnConfig().importEmoticonsPlugin)) {
-  import('froala-editor/js/plugins/emoticons.min.js');
-  import('froala-editor/css/plugins/emoticons.min.css');
+  importSync('froala-editor/js/plugins/emoticons.min.js');
+  importSync('froala-editor/css/plugins/emoticons.min.css');
 }
 if (macroCondition(getOwnConfig().importEntitiesPlugin)) {
-  import('froala-editor/js/plugins/entities.min.js');
+  importSync('froala-editor/js/plugins/entities.min.js');
 }
 if (macroCondition(getOwnConfig().importFilePlugin)) {
-  import('froala-editor/js/plugins/file.min.js');
-  import('froala-editor/css/plugins/file.min.css');
+  importSync('froala-editor/js/plugins/file.min.js');
+  importSync('froala-editor/css/plugins/file.min.css');
 }
 if (macroCondition(getOwnConfig().importFilesManagerPlugin)) {
-  import('froala-editor/js/plugins/files_manager.min.js');
-  import('froala-editor/css/plugins/files_manager.min.css');
+  importSync('froala-editor/js/plugins/files_manager.min.js');
+  importSync('froala-editor/css/plugins/files_manager.min.css');
 }
 if (macroCondition(getOwnConfig().importFontAwesomePlugin)) {
-  import('froala-editor/js/third_party/font_awesome.min.js');
-  import('froala-editor/css/third_party/font_awesome.min.css');
+  importSync('froala-editor/js/third_party/font_awesome.min.js');
+  importSync('froala-editor/css/third_party/font_awesome.min.css');
 }
 if (macroCondition(getOwnConfig().importFontFamilyPlugin)) {
-  import('froala-editor/js/plugins/font_family.min.js');
+  importSync('froala-editor/js/plugins/font_family.min.js');
 }
 if (macroCondition(getOwnConfig().importFontSizePlugin)) {
-  import('froala-editor/js/plugins/font_size.min.js');
+  importSync('froala-editor/js/plugins/font_size.min.js');
 }
 if (macroCondition(getOwnConfig().importFormsPlugin)) {
-  import('froala-editor/js/plugins/forms.min.js');
+  importSync('froala-editor/js/plugins/forms.min.js');
 }
 if (macroCondition(getOwnConfig().importFullscreenPlugin)) {
-  import('froala-editor/js/plugins/fullscreen.min.js');
-  import('froala-editor/css/plugins/fullscreen.min.css');
+  importSync('froala-editor/js/plugins/fullscreen.min.js');
+  importSync('froala-editor/css/plugins/fullscreen.min.css');
 }
 if (macroCondition(getOwnConfig().importHelpPlugin)) {
-  import('froala-editor/js/plugins/help.min.js');
-  import('froala-editor/css/plugins/help.min.css');
+  importSync('froala-editor/js/plugins/help.min.js');
+  importSync('froala-editor/css/plugins/help.min.css');
 }
 if (macroCondition(getOwnConfig().importImagePlugin)) {
-  import('froala-editor/js/plugins/image.min.js');
-  import('froala-editor/css/plugins/image.min.css');
+  importSync('froala-editor/js/plugins/image.min.js');
+  importSync('froala-editor/css/plugins/image.min.css');
 }
 if (macroCondition(getOwnConfig().importImageManagerPlugin)) {
-  import('froala-editor/js/plugins/image_manager.min.js');
-  import('froala-editor/css/plugins/image_manager.min.css');
+  importSync('froala-editor/js/plugins/image_manager.min.js');
+  importSync('froala-editor/css/plugins/image_manager.min.css');
 }
 if (macroCondition(getOwnConfig().importImageTuiPlugin)) {
-  import('froala-editor/js/third_party/image_tui.min.js');
-  import('froala-editor/css/third_party/image_tui.min.css');
+  importSync('froala-editor/js/third_party/image_tui.min.js');
+  importSync('froala-editor/css/third_party/image_tui.min.css');
 }
 if (macroCondition(getOwnConfig().importInlineClassPlugin)) {
-  import('froala-editor/js/plugins/inline_class.min.js');
+  importSync('froala-editor/js/plugins/inline_class.min.js');
 }
 if (macroCondition(getOwnConfig().importInlineStylePlugin)) {
-  import('froala-editor/js/plugins/inline_style.min.js');
+  importSync('froala-editor/js/plugins/inline_style.min.js');
 }
 if (macroCondition(getOwnConfig().importLineBreakerPlugin)) {
-  import('froala-editor/js/plugins/line_breaker.min.js');
-  import('froala-editor/css/plugins/line_breaker.min.css');
+  importSync('froala-editor/js/plugins/line_breaker.min.js');
+  importSync('froala-editor/css/plugins/line_breaker.min.css');
 }
 if (macroCondition(getOwnConfig().importLineHeightPlugin)) {
-  import('froala-editor/js/plugins/line_height.min.js');
+  importSync('froala-editor/js/plugins/line_height.min.js');
 }
 if (macroCondition(getOwnConfig().importLinkPlugin)) {
-  import('froala-editor/js/plugins/link.min.js');
+  importSync('froala-editor/js/plugins/link.min.js');
 }
 if (macroCondition(getOwnConfig().importListsPlugin)) {
-  import('froala-editor/js/plugins/lists.min.js');
+  importSync('froala-editor/js/plugins/lists.min.js');
 }
 if (macroCondition(getOwnConfig().importMarkdownPlugin)) {
-  import('froala-editor/js/plugins/markdown.min.js');
-  import('froala-editor/css/plugins/markdown.min.css');
+  importSync('froala-editor/js/plugins/markdown.min.js');
+  importSync('froala-editor/css/plugins/markdown.min.css');
 }
 if (macroCondition(getOwnConfig().importParagraphFormatPlugin)) {
-  import('froala-editor/js/plugins/paragraph_format.min.js');
+  importSync('froala-editor/js/plugins/paragraph_format.min.js');
 }
 if (macroCondition(getOwnConfig().importParagraphStylePlugin)) {
-  import('froala-editor/js/plugins/paragraph_style.min.js');
+  importSync('froala-editor/js/plugins/paragraph_style.min.js');
 }
 if (macroCondition(getOwnConfig().importPrintPlugin)) {
-  import('froala-editor/js/plugins/print.min.js');
+  importSync('froala-editor/js/plugins/print.min.js');
 }
 if (macroCondition(getOwnConfig().importQuickInsertPlugin)) {
-  import('froala-editor/js/plugins/quick_insert.min.js');
-  import('froala-editor/css/plugins/quick_insert.min.css');
+  importSync('froala-editor/js/plugins/quick_insert.min.js');
+  importSync('froala-editor/css/plugins/quick_insert.min.css');
 }
 if (macroCondition(getOwnConfig().importQuotePlugin)) {
-  import('froala-editor/js/plugins/quote.min.js');
+  importSync('froala-editor/js/plugins/quote.min.js');
 }
 if (macroCondition(getOwnConfig().importSavePlugin)) {
-  import('froala-editor/js/plugins/save.min.js');
+  importSync('froala-editor/js/plugins/save.min.js');
 }
 if (macroCondition(getOwnConfig().importShowdownPlugin)) {
-  import('froala-editor/js/third_party/showdown.min.js');
+  importSync('froala-editor/js/third_party/showdown.min.js');
 }
 if (macroCondition(getOwnConfig().importSpecialCharactersPlugin)) {
-  import('froala-editor/js/plugins/special_characters.min.js');
-  import('froala-editor/css/plugins/special_characters.min.css');
+  importSync('froala-editor/js/plugins/special_characters.min.js');
+  importSync('froala-editor/css/plugins/special_characters.min.css');
 }
 if (macroCondition(getOwnConfig().importSpellCheckerPlugin)) {
-  import('froala-editor/js/third_party/spell_checker.min.js');
-  import('froala-editor/css/third_party/spell_checker.min.css');
+  importSync('froala-editor/js/third_party/spell_checker.min.js');
+  importSync('froala-editor/css/third_party/spell_checker.min.css');
 }
 if (macroCondition(getOwnConfig().importTablePlugin)) {
-  import('froala-editor/js/plugins/table.min.js');
-  import('froala-editor/css/plugins/table.min.css');
+  importSync('froala-editor/js/plugins/table.min.js');
+  importSync('froala-editor/css/plugins/table.min.css');
 }
 if (macroCondition(getOwnConfig().importTrackChangesPlugin)) {
-  import('froala-editor/js/plugins/track_changes.min.js');
+  importSync('froala-editor/js/plugins/track_changes.min.js');
 }
 if (macroCondition(getOwnConfig().importTrimVideoPlugin)) {
-  import('froala-editor/js/plugins/trim_video.min.js');
-  import('froala-editor/css/plugins/trim_video.min.css');
+  importSync('froala-editor/js/plugins/trim_video.min.js');
+  importSync('froala-editor/css/plugins/trim_video.min.css');
 }
 if (macroCondition(getOwnConfig().importUrlPlugin)) {
-  import('froala-editor/js/plugins/url.min.js');
+  importSync('froala-editor/js/plugins/url.min.js');
 }
 if (macroCondition(getOwnConfig().importVideoPlugin)) {
-  import('froala-editor/js/plugins/video.min.js');
-  import('froala-editor/css/plugins/video.min.css');
+  importSync('froala-editor/js/plugins/video.min.js');
+  importSync('froala-editor/css/plugins/video.min.css');
 }
 if (macroCondition(getOwnConfig().importWordPastePlugin)) {
-  import('froala-editor/js/plugins/word_paste.min.js');
+  importSync('froala-editor/js/plugins/word_paste.min.js');
 }
 
 // Import optional themes
 if (macroCondition(getOwnConfig().importDarkTheme)) {
-  import('froala-editor/css/themes/dark.min.css');
+  importSync('froala-editor/css/themes/dark.min.css');
 }
 if (macroCondition(getOwnConfig().importGrayTheme)) {
-  import('froala-editor/css/themes/gray.min.css');
+  importSync('froala-editor/css/themes/gray.min.css');
 }
 if (macroCondition(getOwnConfig().importRoyalTheme)) {
-  import('froala-editor/css/themes/royal.min.css');
+  importSync('froala-editor/css/themes/royal.min.css');
 }
 
 // Re-export FroalaEditor so those who extend the component

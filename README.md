@@ -19,7 +19,7 @@ Compatibility
 * Ember.js v3.20 or above
 * Ember CLI v3.20 or above
 * Node.js v12, v14, or v16 and above
-* __`ember-auto-import` v2 or above__
+* _`ember-auto-import` v2 or above_
 
 #### Note on `ember-auto-import` version requirement
 

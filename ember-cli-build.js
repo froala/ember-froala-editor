@@ -21,6 +21,7 @@ module.exports = function (defaults) {
         'table',
         'url',
       ],
+      themes: ['dark', 'gray', 'royal'],
     },
   });
 

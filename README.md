@@ -19,11 +19,15 @@ Compatibility
 * Ember.js v3.20 or above
 * Ember CLI v3.20 or above
 * Node.js v12, v14, or v16 and above
+* _`ember-auto-import` v2 or above_
 
-#### Note on Embroider compatibility
+#### Note on `ember-auto-import` version requirement
 
-Currently this addon is _not_ Ember Embroider compatible due to how Froala
-assest are imported into the build tree and does not use `ember-auto-import`.
+This addon uses `ember-auto-import` v2, which also requires that consuming
+projects also use `ember-auto-import` v2. This is also a requirement for Ember
+v4. Outside of `npm install --save-dev ember-auto-import@^2.0.0 webpack`, take
+a look at the [upgrade guide](https://github.com/ef4/ember-auto-import/blob/main/docs/upgrade-guide-2.0.md)
+for further details when upgrading from `ember-auto-import` v1.
 
 
 Installation
@@ -44,9 +48,9 @@ can additionally include [languages][4], [plugins][5], and [themes][6] by
 adding configuration details in your `ember-cli-build.js` file.
 
 Within the `ember-cli-build.js` file, add a `ember-froala-editor` object and
-list which additional assets to include. The values of each key can be;
-`boolean` for all/none, `string` for one, or an `array` of `strings` for
-multiple. For example, to include a few languages, all plugins and one theme;
+list which additional assets to include in an array. For plugins, you can use
+either the plugin name as shown in the Froala Editor docs or file name (without
+the extension). Ex:
 
 ```js
 // ember-cli-build.js
@@ -54,8 +58,8 @@ multiple. For example, to include a few languages, all plugins and one theme;
 let app = new EmberApp(defaults, {
   'ember-froala-editor': {
     languages: ['es','fr','de'],
-    plugins  : true,
-    themes   : 'royal'
+    plugins  : ['align','charCounter','paragraph_format'],
+    themes   : ['royal']
   }
 });
 // ... (snip)
@@ -382,10 +386,10 @@ module('Acceptance | FroalaEditor', function(hooks) {
     assert.expect(2);
 
     await visit('/');
-    assert.equal(getInFroalaEditor('#editor'), '<p>Foobar</p>');
+    assert.strictEqual(getInFroalaEditor('#editor'), '<p>Foobar</p>');
 
     await fillInFroalaEditor('#editor', '<p>Foobaz</p>');
-    assert.equal(getInFroalaEditor('#editor'), '<p>Foobaz</p>');
+    assert.strictEqual(getInFroalaEditor('#editor'), '<p>Foobaz</p>');
   });
 });
 ```
@@ -484,9 +488,36 @@ export default {
 Upgrading from 3.x
 ------------------------------------------------------------------------------
 
-No changes needed from an ember perspective. Installation and usage is still
-the same, but editor configuration options might have changed. See the [Froala
-Editor docs](https://froala.com/wysiwyg-editor/changelog/) for those details.
+The only change is with the configuration options in `ember-cli-build.js`. All
+option types (languages, plugins, themes) must now be arrays with specific
+assets listed. Boolean and string values are no longer suppored. Ex:
+
+**From**
+```js
+let app = new EmberApp(defaults, {
+  'ember-froala-editor': {
+    languages: 'es',
+    plugins  : ['align','char_counter'],
+    themes   : true
+  }
+});
+```
+
+**To**
+```js
+let app = new EmberApp(defaults, {
+  'ember-froala-editor': {
+    languages: ['es'],
+    plugins  : ['align','char_counter'],
+    themes   : ['dark','gray','royal']
+  }
+});
+```
+
+No other changes needed from an ember perspective. Installation and usage is
+still the same, but editor configuration options might have changed. See the
+[Froala Editor docs](https://froala.com/wysiwyg-editor/docs/migrate-from-version-3-to-version-4/)
+for those details.
 
 
 FAQ
@@ -494,14 +525,14 @@ FAQ
 
 #### Why can't I use the `{{on}}` modifier for Froala Editor events?
 Starting with Froala Editor v3, it no longer triggers custom events on the DOM.
-Instead, the new way is to pass callbacks into the `options.events` block,
+Instead, the new way is to pass callbacks into the `options.events` object,
 or use the `editor.events.on()` method. This is done for you with the
 `<FroalaEditor />` component by taking all  `@on-*` args and adding them
 to the editor using the `editor.events.on()` method.
 
 #### Why can't I customize the editor `tagName`?
 With the move to Glimmer Components, the `tagName` is no longer customized
-through the component class. Rather, the forthcoming `(element)` helper
+through the component class. Rather, the forthcoming(?) `(element)` helper
 will fill this need but it is not released in Ember.js proper yet. Once it is,
 you'll be able to customize the emitted DOM Element using the `@tagName` argument.
 Just to note, the Froala Editor itself modifies the DOM quite a bit, so the
@@ -529,11 +560,19 @@ current form. Additionally, by requiring a SafeString, the addon was able to
 allow greater backwards compatibility without resorting to computeds. We can
 always go back on this decision but it was a good change to make at v3.
 
+#### Why is my build output size larger with v4?
+With the move to `ember-auto-import`, all possible dynamic `import()` assets
+are included in the build. Therefore, all language files, plugins, and themes
+will be included in the project build output. However, only those listed in
+your `ember-cli-build.js` `ember-froala-editor` options will actually be
+requested by your browser.
+
 #### Why is it recommended to depend upon a minor version and not major?
 Ex: `~3.0.0` instead of `^3.0.0`. Froala would like this addon (and other
 official integrations) to match versions of the main editor package. 
-Therefore, breaking changes with this addon will be at minor releases 
-(when there are any).
+While we try to withold breaking changes to a major release, there are times
+where changes in the Ember ecosystem require changes to the addon, before the
+next major release of the Froala Editor (we note these in the release notes).
 
 
 Contributing

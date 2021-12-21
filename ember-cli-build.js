@@ -21,8 +21,6 @@ module.exports = function (defaults) {
         'table',
         'url',
       ],
-      languages: false,
-      themes: true,
     },
   });
 

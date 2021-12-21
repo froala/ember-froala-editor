@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@ember/render-modifiers": "^2.0.0",
+    "@embroider/macros": "^0.48.1",
     "@glimmer/component": "^1.0.4",
     "ember-auto-import": "^2.2.4",
     "ember-cli-babel": "^7.26.8",

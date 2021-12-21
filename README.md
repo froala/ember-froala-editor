@@ -23,10 +23,10 @@ Compatibility
 
 #### Note on `ember-auto-import` version requirement
 
-This addon uses `ember-auto-import` v2, which also requires that consuming
-projects also use `ember-auto-import` v2. This is also a requirement for Ember
-v4. Outside of `npm install --save-dev ember-auto-import@^2.0.0 webpack`, take
-a look at the [upgrade guide](https://github.com/ef4/ember-auto-import/blob/main/docs/upgrade-guide-2.0.md)
+This addon (and Ember v4+) uses `ember-auto-import` v2, which implies that
+consuming projects also use `ember-auto-import` v2. Outside of
+`npm install --save-dev ember-auto-import@^2.0.0 webpack`, take a look at the
+[upgrade guide](https://github.com/ef4/ember-auto-import/blob/main/docs/upgrade-guide-2.0.md)
 for further details when upgrading from `ember-auto-import` v1.
 
 

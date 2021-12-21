@@ -11,7 +11,7 @@ module('Integration | Helper | html-safe', function (hooks) {
 
     await render(hbs`{{html-safe this.content}}`);
 
-    assert.equal(this.element.textContent.trim(), 'foobar');
+    assert.strictEqual(this.element.textContent.trim(), 'foobar');
   });
 
   test('undefined is rendered without error', async function (assert) {
@@ -19,7 +19,7 @@ module('Integration | Helper | html-safe', function (hooks) {
 
     await render(hbs`{{html-safe this.content}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.strictEqual(this.element.textContent.trim(), '');
   });
 
   test('null is rendered without error', async function (assert) {
@@ -27,6 +27,6 @@ module('Integration | Helper | html-safe', function (hooks) {
 
     await render(hbs`{{html-safe this.content}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.strictEqual(this.element.textContent.trim(), '');
   });
 });

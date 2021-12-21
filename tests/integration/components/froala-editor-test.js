@@ -72,7 +72,7 @@ module('Integration | Component | froala-editor', function (hooks) {
     this.set('initializedCallback', (editor) => {
       editor.destroy();
       this.set('foo', foobaz);
-      assert.equal(this.element.textContent.trim(), 'Foobaz');
+      assert.strictEqual(this.element.textContent.trim(), 'Foobaz');
     });
 
     await render(hbs`
@@ -92,7 +92,7 @@ module('Integration | Component | froala-editor', function (hooks) {
 
     this.set('initializedCallback', (editor) => {
       this.set('foo', foobaz);
-      assert.equal(editor.html.get(), foobaz.toString());
+      assert.strictEqual(editor.html.get(), foobaz.toString());
     });
 
     await render(hbs`
@@ -116,7 +116,7 @@ module('Integration | Component | froala-editor', function (hooks) {
     });
 
     this.set('setFoo', (html) => {
-      assert.equal(html.toString(), foobaz.toString());
+      assert.strictEqual(html.toString(), foobaz.toString());
     });
 
     await render(hbs`
@@ -141,7 +141,7 @@ module('Integration | Component | froala-editor', function (hooks) {
     });
 
     this.set('setFoo', (html) => {
-      assert.equal(html.toString(), foobaz.toString());
+      assert.strictEqual(html.toString(), foobaz.toString());
     });
 
     await render(hbs`
@@ -168,7 +168,7 @@ module('Integration | Component | froala-editor', function (hooks) {
     });
 
     this.set('setFoo', (html) => {
-      assert.equal(html.toString(), foobaz.toString());
+      assert.strictEqual(html.toString(), foobaz.toString());
     });
 
     await render(hbs`
@@ -345,7 +345,7 @@ module('Integration | Component | froala-editor', function (hooks) {
 
     await waitUntil(() => editor !== null);
 
-    assert.equal(typeof editor.component, 'undefined');
+    assert.strictEqual(typeof editor.component, 'undefined');
   });
 
   test('initial @disabled state is applied', async function (assert) {

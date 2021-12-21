@@ -15,14 +15,14 @@ module('Unit | Helper | froala-arg', function (hooks) {
     let editor = { froala: 'editor' };
     let check = 'foobar';
     let callback = (editor, param1) => param1;
-    assert.equal(froalaArg(callback, check).bind(editor)(), check);
+    assert.strictEqual(froalaArg(callback, check).bind(editor)(), check);
   });
 
   test('event arguments are applied', function (assert) {
     let editor = { froala: 'editor' };
     let check = 'foobar';
     let callback = (editor, param1) => param1;
-    assert.equal(froalaArg(callback).bind(editor)(check), check);
+    assert.strictEqual(froalaArg(callback).bind(editor)(check), check);
   });
 
   test('partial application parameters and event arguments are applied', function (assert) {
@@ -30,7 +30,10 @@ module('Unit | Helper | froala-arg', function (hooks) {
     let check1 = 'foobar';
     let check2 = 'foobaz';
     let callback = (editor, param1, param2) => param2;
-    assert.equal(froalaArg(callback, check1).bind(editor)(check2), check2);
+    assert.strictEqual(
+      froalaArg(callback, check1).bind(editor)(check2),
+      check2
+    );
   });
 
   test('calling the helper twice on the same callback asserts', function (assert) {

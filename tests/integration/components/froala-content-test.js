@@ -27,12 +27,12 @@ module('Integration | Component | froala-content', function (hooks) {
   test('@content is output inside the block', async function (assert) {
     this.set('content', htmlSafe('foobar'));
     await render(hbs`<FroalaContent @content={{this.content}} />`);
-    assert.equal(this.element.textContent.trim(), 'foobar');
+    assert.strictEqual(this.element.textContent.trim(), 'foobar');
   });
 
   test("block content is properly yield'ed", async function (assert) {
     this.set('content', htmlSafe('foobar'));
     await render(hbs`<FroalaContent>{{this.content}}</FroalaContent>`);
-    assert.equal(this.element.textContent.trim(), 'foobar');
+    assert.strictEqual(this.element.textContent.trim(), 'foobar');
   });
 });

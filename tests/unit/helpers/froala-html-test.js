@@ -18,7 +18,7 @@ module('Unit | Helper | froala-html', function (hooks) {
         },
       },
     };
-    let setter = (content) => assert.equal(content.toString(), html);
+    let setter = (content) => assert.strictEqual(content.toString(), html);
     let closure = froalaHtml(setter);
     closure(editor);
   });
@@ -36,7 +36,7 @@ module('Unit | Helper | froala-html', function (hooks) {
       },
     };
     // Ex: {{froala-html this.setter}}
-    let setter = (content) => assert.equal(content.toString(), html);
+    let setter = (content) => assert.strictEqual(content.toString(), html);
     let closure = froalaHtml(setter).bind(editor);
     closure();
   });
@@ -54,7 +54,8 @@ module('Unit | Helper | froala-html', function (hooks) {
       },
     };
     // Ex: {{froala-html this.setter this.htmlHere}}
-    let setter = (content, editor, htmlHere) => assert.equal(htmlHere, html);
+    let setter = (content, editor, htmlHere) =>
+      assert.strictEqual(htmlHere, html);
     let closure = froalaHtml(setter, true, html);
     closure(editor);
   });
@@ -73,7 +74,7 @@ module('Unit | Helper | froala-html', function (hooks) {
     };
     // Ex: @on-paste-afterCleanup={{froala-html this.setter}}
     let setter = (content, editor, clipboard_html) =>
-      assert.equal(clipboard_html, html);
+      assert.strictEqual(clipboard_html, html);
     let closure = froalaHtml(setter);
     closure(editor, html);
   });
@@ -92,8 +93,8 @@ module('Unit | Helper | froala-html', function (hooks) {
     };
     // Ex: @on-paste-afterCleanup={{froala-html this.setter this.html}}
     let setter = (content, editor, check1, check2) => {
-      assert.equal(check1, html);
-      assert.equal(check2, html);
+      assert.strictEqual(check1, html);
+      assert.strictEqual(check2, html);
     };
     let closure = froalaHtml(setter, true, html);
     closure(editor, html);

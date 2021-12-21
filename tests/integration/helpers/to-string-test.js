@@ -12,7 +12,7 @@ module('Integration | Helper | to-string', function (hooks) {
 
     await render(hbs`{{to-string this.content}}`);
 
-    assert.equal(this.element.textContent.trim(), '<p>foobar</p>');
+    assert.strictEqual(this.element.textContent.trim(), '<p>foobar</p>');
   });
 
   test('undefined is rendered without error', async function (assert) {
@@ -20,7 +20,7 @@ module('Integration | Helper | to-string', function (hooks) {
 
     await render(hbs`{{to-string this.content}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.strictEqual(this.element.textContent.trim(), '');
   });
 
   test('null is rendered without error', async function (assert) {
@@ -28,6 +28,6 @@ module('Integration | Helper | to-string', function (hooks) {
 
     await render(hbs`{{to-string this.content}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.strictEqual(this.element.textContent.trim(), '');
   });
 });

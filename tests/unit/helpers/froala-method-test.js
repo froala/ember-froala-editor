@@ -7,7 +7,7 @@ module('Unit | Helper | froala-method', function (hooks) {
 
   test('returns a closure / function', function (assert) {
     let closure = froalaMethod('froala.method.name');
-    assert.equal(typeof closure, 'function');
+    assert.strictEqual(typeof closure, 'function');
   });
 
   test('method closure works when editor is bound', function (assert) {
@@ -22,7 +22,7 @@ module('Unit | Helper | froala-method', function (hooks) {
       },
     };
     let closure = froalaMethod('html.get').bind(editor);
-    assert.equal(closure(), html); // Mimic an options event callback
+    assert.strictEqual(closure(), html); // Mimic an options event callback
   });
 
   test('method closure works when editor is passed in', function (assert) {
@@ -38,7 +38,7 @@ module('Unit | Helper | froala-method', function (hooks) {
     };
     // Ex: {{froala-method "html.get"}}
     let closure = froalaMethod('html.get');
-    assert.equal(closure(editor), html); // Mimic an on-* event callback
+    assert.strictEqual(closure(editor), html); // Mimic an on-* event callback
   });
 
   test('arguments passed into the helper are applied to the method', function (assert) {
@@ -48,7 +48,7 @@ module('Unit | Helper | froala-method', function (hooks) {
       // Mock an editor instance
       component: {}, // Added by <FroalaEditor>
       callback(methodParam) {
-        assert.equal(methodParam, helperParam);
+        assert.strictEqual(methodParam, helperParam);
       },
     };
     // Ex: {{froala-method "foobar"}}
@@ -63,7 +63,7 @@ module('Unit | Helper | froala-method', function (hooks) {
       // Mock an editor instance
       component: {}, // Added by <FroalaEditor>
       callback(methodParam) {
-        assert.equal(methodParam, eventParam);
+        assert.strictEqual(methodParam, eventParam);
       },
     };
     // Ex: {{froala-method "replace" replace="2"}}

@@ -10,28 +10,30 @@ import { froalaHtml } from '../helpers/froala-html';
 import FroalaEditor from 'froala-editor';
 import 'froala-editor/css/froala_editor.min.css';
 
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only
-(async () => {
-  const config = getOwnConfig();
-  for (const plugin of config.plugins.js) {
-    importSync(`froala-editor/js/plugins/${plugin}`);
-  }
-  for (const plugin of config.plugins.css) {
-    importSync(`froala-editor/css/plugins/${plugin}`);
-  }
-  for (const plugin of config.third_party.js) {
-    importSync(`froala-editor/js/third_party/${plugin}`);
-  }
-  for (const plugin of config.third_party.css) {
-    importSync(`froala-editor/css/third_party/${plugin}`);
-  }
-  for (const language of config.languages) {
-    importSync(`froala-editor/js/languages/${language}`);
-  }
-  for (const theme of config.themes) {
-    importSync(`froala-editor/css/themes/${theme}`);
-  }
-})();
+// Import optional Froala Editor assets
+// Note: Importing this way to minimize ember-auto-import from including
+//       more assets than what might be needed into the build output
+//       because `import()` and `importSync()` will include all files
+//       beyond the static part of the path.
+const config = getOwnConfig();
+for (const plugin of config.plugins.js) {
+  importSync(`froala-editor/js/plugins/${plugin}`);
+}
+for (const plugin of config.plugins.css) {
+  importSync(`froala-editor/css/plugins/${plugin}`);
+}
+for (const plugin of config.third_party.js) {
+  importSync(`froala-editor/js/third_party/${plugin}`);
+}
+for (const plugin of config.third_party.css) {
+  importSync(`froala-editor/css/third_party/${plugin}`);
+}
+for (const language of config.languages) {
+  importSync(`froala-editor/js/languages/${language}`);
+}
+for (const theme of config.themes) {
+  importSync(`froala-editor/css/themes/${theme}`);
+}
 
 // Re-export FroalaEditor so those who extend the component
 // can also access the FroalaEditor class at the same time

@@ -568,7 +568,7 @@ your `ember-cli-build.js` `ember-froala-editor` options will actually be
 requested by your browser.
 
 #### Why is it recommended to depend upon a minor version and not major?
-Ex: `~3.0.0` instead of `^3.0.0`. Froala would like this addon (and other
+Ex: `~4.0.0` instead of `^4.0.0`. Froala would like this addon (and other
 official integrations) to match versions of the main editor package. 
 While we try to withold breaking changes to a major release, there are times
 where changes in the Ember ecosystem require changes to the addon, before the

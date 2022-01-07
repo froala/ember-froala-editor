@@ -30,6 +30,41 @@ consuming projects also use `ember-auto-import` v2. Outside of
 for further details when upgrading from `ember-auto-import` v1.
 
 
+Upgrading from 3.x
+------------------------------------------------------------------------------
+
+The only change is with the configuration options in `ember-cli-build.js`. All
+option types (languages, plugins, themes) must now be arrays with specific
+assets listed. Boolean and string values are no longer supported. Ex:
+
+**From**
+```js
+let app = new EmberApp(defaults, {
+  'ember-froala-editor': {
+    languages: 'es',
+    plugins  : ['align','char_counter'],
+    themes   : true
+  }
+});
+```
+
+**To**
+```js
+let app = new EmberApp(defaults, {
+  'ember-froala-editor': {
+    languages: ['es'],
+    plugins  : ['align','char_counter'],
+    themes   : ['dark','gray','royal']
+  }
+});
+```
+
+No other changes needed from an ember perspective. Installation and usage is
+still the same, but editor configuration options might have changed. See the
+[Froala Editor docs](https://froala.com/wysiwyg-editor/docs/migrate-from-version-3-to-version-4/)
+for those details.
+
+
 Installation
 ------------------------------------------------------------------------------
 
@@ -485,41 +520,6 @@ export default {
 ```
 
 
-Upgrading from 3.x
-------------------------------------------------------------------------------
-
-The only change is with the configuration options in `ember-cli-build.js`. All
-option types (languages, plugins, themes) must now be arrays with specific
-assets listed. Boolean and string values are no longer suppored. Ex:
-
-**From**
-```js
-let app = new EmberApp(defaults, {
-  'ember-froala-editor': {
-    languages: 'es',
-    plugins  : ['align','char_counter'],
-    themes   : true
-  }
-});
-```
-
-**To**
-```js
-let app = new EmberApp(defaults, {
-  'ember-froala-editor': {
-    languages: ['es'],
-    plugins  : ['align','char_counter'],
-    themes   : ['dark','gray','royal']
-  }
-});
-```
-
-No other changes needed from an ember perspective. Installation and usage is
-still the same, but editor configuration options might have changed. See the
-[Froala Editor docs](https://froala.com/wysiwyg-editor/docs/migrate-from-version-3-to-version-4/)
-for those details.
-
-
 FAQ
 ------------------------------------------------------------------------------
 
@@ -538,7 +538,7 @@ you'll be able to customize the emitted DOM Element using the `@tagName` argumen
 Just to note, the Froala Editor itself modifies the DOM quite a bit, so the
 emitted element might change anyway.
 
-#### Why can content be passed into `<FroalaEditor>` in block form?
+#### Why can't content be passed into `<FroalaEditor>` in block form?
 Content changes must be captured by the component to properly update the editor
 using `editor.html.set()` instead of through the Glimmer template. When content
 is passed in via block form (`<FroalaEditor>{{this.content}}</FroalaEditor>`)

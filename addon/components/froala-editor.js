@@ -3,7 +3,7 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 import { assign } from '@ember/polyfills';
 import { isHTMLSafe } from '@ember/template';
-import { each, getOwnConfig, importSync } from '@embroider/macros';
+import { getOwnConfig, importSync } from '@embroider/macros';
 import Component from '@glimmer/component';
 import { froalaArg } from '../helpers/froala-arg';
 import { froalaHtml } from '../helpers/froala-html';
@@ -15,22 +15,23 @@ import 'froala-editor/css/froala_editor.min.css';
 //       more assets than what might be needed into the build output
 //       because `import()` and `importSync()` will include all files
 //       beyond the static part of the path.
-for (const plugin of each(getOwnConfig().plugins.js)) {
+const config = getOwnConfig();
+for (const plugin of config.plugins.js) {
   importSync(`froala-editor/js/plugins/${plugin}`);
 }
-for (const plugin of each(getOwnConfig().plugins.css)) {
+for (const plugin of config.plugins.css) {
   importSync(`froala-editor/css/plugins/${plugin}`);
 }
-for (const plugin of each(getOwnConfig().third_party.js)) {
+for (const plugin of config.third_party.js) {
   importSync(`froala-editor/js/third_party/${plugin}`);
 }
-for (const plugin of each(getOwnConfig().third_party.css)) {
+for (const plugin of config.third_party.css) {
   importSync(`froala-editor/css/third_party/${plugin}`);
 }
-for (const language of each(getOwnConfig().languages)) {
+for (const language of config.languages) {
   importSync(`froala-editor/js/languages/${language}`);
 }
-for (const theme of each(getOwnConfig().themes)) {
+for (const theme of config.themes) {
   importSync(`froala-editor/css/themes/${theme}`);
 }
 

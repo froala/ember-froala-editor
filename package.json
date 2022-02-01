@@ -53,7 +53,7 @@
     "ember-cli-babel": "^7.26.11",
     "ember-cli-htmlbars": "^6.0.1",
     "ember-cli-version-checker": "^5.1.2",
-    "froala-editor": "^4.0.8"
+    "froala-editor": "^4.0.9"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",

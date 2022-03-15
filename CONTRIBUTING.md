@@ -38,5 +38,4 @@ commit message for clarification as needed.
 
 
 For more information on using ember-cli, visit 
-[https://cli.emberjs.com/release/](https://cli.emberjs.com/release/) and/or
-[https://ember-cli.com/](https://ember-cli.com/).
+[https://cli.emberjs.com/release/](https://cli.emberjs.com/release/).

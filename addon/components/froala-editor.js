@@ -266,7 +266,7 @@ export default class FroalaEditorComponent extends Component {
 
     // Since we overrode this event callback,
     // call the passed in callback(s) if there are any
-    if (initEventCallback === 'function') {
+    if (typeof initEventCallback === 'function') {
       // Mimic default behavior by binding the editor instance to the called context
       initEventCallback.bind(editor)(...args);
     }

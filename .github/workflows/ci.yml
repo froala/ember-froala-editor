@@ -64,7 +64,6 @@ jobs:
           - ember-lts-4.8
           - ember-release
           - ember-beta
-          - ember-canary
           - ember-classic
           - embroider-safe
           - embroider-optimized

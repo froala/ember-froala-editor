@@ -1,7 +1,6 @@
 import { getOwner } from '@ember/application';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
-import { assign } from '@ember/polyfills';
 import { isHTMLSafe } from '@ember/template';
 import { getOwnConfig, importSync } from '@embroider/macros';
 import Component from '@glimmer/component';
@@ -171,7 +170,7 @@ export default class FroalaEditorComponent extends Component {
 
   get combinedOptions() {
     let config = getOwner(this).resolveRegistration('config:environment');
-    return assign(
+    return Object.assign(
       {},
       config['ember-froala-editor'],
       this.options,
@@ -182,7 +181,7 @@ export default class FroalaEditorComponent extends Component {
   }
 
   get combinedCallbacks() {
-    return assign({}, this.propertyCallbacks, this.argumentCallbacks);
+    return Object.assign({}, this.propertyCallbacks, this.argumentCallbacks);
   }
 
   get optionsWithInitEvent() {

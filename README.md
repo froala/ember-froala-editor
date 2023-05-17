@@ -605,7 +605,7 @@ For details please see [License Agreement](http://froala.com/wysiwyg-editor/term
 [12]: https://www.froala.com/wysiwyg-editor/docs/overview#display
 [13]: https://www.froala.com/wysiwyg-editor/docs/concepts/custom/button
 [14]: https://api.emberjs.com/ember/release/functions/@ember%2Ftemplate/htmlSafe
-[15]: https://api.emberjs.com/ember/release/functions/@ember%2Fpolyfills/assign
+[15]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 [16]: https://api.emberjs.com/ember/release/classes/String/methods/camelize?anchor=classify
 [17]: https://guides.emberjs.com/release/applications/initializers/#toc_application-initializers
 [18]: https://guides.emberjs.com/release/testing/acceptance/

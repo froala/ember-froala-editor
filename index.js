@@ -3,7 +3,6 @@
 // Module requirements
 const fs = require('fs');
 const path = require('path');
-const VersionChecker = require('ember-cli-version-checker');
 
 module.exports = {
   name: require('./package').name,
@@ -44,24 +43,6 @@ module.exports = {
       plugins: [],
       themes: [],
     },
-  },
-
-  init() {
-    this._super.init.apply(this, arguments);
-    // https://github.com/ember-cli/ember-cli-version-checker/tree/v5.1.2#assertabove
-    let checker = new VersionChecker(this.project);
-    checker
-      .for('ember-cli')
-      .assertAbove(
-        '3.19.0',
-        `${this.name}: Minimum ember-cli version is 3.20.0`
-      );
-    checker
-      .for('ember-source')
-      .assertAbove(
-        '3.19.0',
-        `${this.name}: Minimum ember.js version is 3.20.0`
-      );
   },
 
   included(app) {

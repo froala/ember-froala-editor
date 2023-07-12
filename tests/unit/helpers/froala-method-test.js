@@ -42,7 +42,6 @@ module('Unit | Helper | froala-method', function (hooks) {
   });
 
   test('arguments passed into the helper are applied to the method', function (assert) {
-    assert.expect(1);
     let helperParam = 'foobar';
     let editor = {
       // Mock an editor instance
@@ -57,7 +56,6 @@ module('Unit | Helper | froala-method', function (hooks) {
   });
 
   test('arguments replaced with event callback arguments', function (assert) {
-    assert.expect(1);
     let eventParam = 'foobar';
     let editor = {
       // Mock an editor instance

@@ -10,8 +10,6 @@ module('Acceptance | test helpers test', function (hooks) {
   setupApplicationTest(hooks);
 
   test('test getInFroalaEditor() and fillInFroalaEditor()', async function (assert) {
-    assert.expect(3);
-
     await visit('/');
     assert.strictEqual(getInFroalaEditor('#editor'), '<p>Foobar</p>');
 

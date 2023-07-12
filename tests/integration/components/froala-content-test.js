@@ -13,7 +13,6 @@ module('Integration | Component | froala-content', function (hooks) {
   });
 
   test('custom class names are applied', async function (assert) {
-    assert.expect(2);
     await render(hbs`<FroalaContent class="foobar" />`);
     assert.dom('div').hasClass('fr-view');
     assert.dom('div').hasClass('foobar');

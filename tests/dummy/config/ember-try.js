@@ -9,7 +9,12 @@ module.exports = async function () {
       {
         name: 'ember-lts-3.28',
         npm: {
+          dependencies: {
+            '@ember/render-modifiers': '2.0.5',
+          },
           devDependencies: {
+            '@ember/test-helpers': '2.9.3',
+            'ember-resolver': '10.0.0',
             'ember-source': '~3.28.0',
           },
         },
@@ -17,7 +22,11 @@ module.exports = async function () {
       {
         name: 'ember-lts-4.4',
         npm: {
+          dependencies: {
+            '@ember/render-modifiers': '2.0.5',
+          },
           devDependencies: {
+            'ember-resolver': '10.0.0',
             'ember-source': '~4.4.0',
           },
         },

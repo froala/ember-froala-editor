@@ -5,7 +5,7 @@ import { htmlSafe } from '@ember/template';
 export function froalaHtml(callback, returnSafeString = true, ...partial) {
   assert(
     '{{froala-html}} helper requires a function as the first parameter',
-    typeof callback === 'function'
+    typeof callback === 'function',
   );
 
   return function froalaHtmlClosure(...args) {
@@ -16,7 +16,7 @@ export function froalaHtml(callback, returnSafeString = true, ...partial) {
 
     assert(
       '{{froala-html}} helper cannot determine the editor instance',
-      editor.html && typeof editor.html.get === 'function'
+      editor.html && typeof editor.html.get === 'function',
     );
 
     // Get the html content from the editor, making it a SafeString if needed
@@ -30,5 +30,5 @@ export function froalaHtml(callback, returnSafeString = true, ...partial) {
 }
 
 export default helper(([callback, ...partial], { returnSafeString = true }) =>
-  froalaHtml(callback, returnSafeString, ...partial)
+  froalaHtml(callback, returnSafeString, ...partial),
 );

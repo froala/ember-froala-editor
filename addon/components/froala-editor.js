@@ -61,7 +61,7 @@ export default class FroalaEditorComponent extends Component {
       if (
         Object.prototype.hasOwnProperty.call(
           FroalaEditor.DEFAULTS,
-          propertyName
+          propertyName,
         )
       ) {
         options[propertyName] = this[propertyName];
@@ -76,7 +76,7 @@ export default class FroalaEditorComponent extends Component {
       if (
         Object.prototype.hasOwnProperty.call(
           FroalaEditor.DEFAULTS,
-          argumentName
+          argumentName,
         )
       ) {
         options[argumentName] = this.args[argumentName];
@@ -104,7 +104,7 @@ export default class FroalaEditorComponent extends Component {
 
       assert(
         `<FroalaEditor> ${propertyName} event callback property must be a function`,
-        typeof this[propertyName] === 'function'
+        typeof this[propertyName] === 'function',
       );
 
       // Convert the name to what the event name would be
@@ -144,7 +144,7 @@ export default class FroalaEditorComponent extends Component {
 
       assert(
         `<FroalaEditor> @${argumentName} event callback argument must be a function`,
-        typeof this.args[argumentName] === 'function'
+        typeof this.args[argumentName] === 'function',
       );
 
       // Convert the name to what the event name would be
@@ -176,7 +176,7 @@ export default class FroalaEditorComponent extends Component {
       this.options,
       this.propertyOptions,
       this.args.options,
-      this.argumentOptions
+      this.argumentOptions,
     );
   }
 
@@ -202,7 +202,7 @@ export default class FroalaEditorComponent extends Component {
     options.events[initEventName] = froalaArg(
       this.setupEditor,
       initEventName,
-      initEventCallback
+      initEventCallback,
     );
 
     return options;
@@ -214,20 +214,20 @@ export default class FroalaEditorComponent extends Component {
       '<FroalaEditor> @content argument must be a SafeString from htmlSafe()',
       isHTMLSafe(args.content) ||
         args.content === null ||
-        typeof args.content === 'undefined'
+        typeof args.content === 'undefined',
     );
     assert(
       '<FroalaEditor> @update argument must be a function',
-      typeof args.update === 'function' || typeof args.update === 'undefined'
+      typeof args.update === 'function' || typeof args.update === 'undefined',
     );
     assert(
       '<FroalaEditor> @updateEvent argument must be a string',
       typeof args.updateEvent === 'string' ||
-        typeof args.updateEvent === 'undefined'
+        typeof args.updateEvent === 'undefined',
     );
     assert(
       '<FroalaEditor> @options argument must be an object',
-      typeof args.options === 'object' || typeof args.options === 'undefined'
+      typeof args.options === 'object' || typeof args.options === 'undefined',
     );
   }
 
@@ -278,7 +278,7 @@ export default class FroalaEditorComponent extends Component {
   @action updateEditorContent(element, [content]) {
     assert(
       '<FroalaEditor> updated @content argument must be a SafeString from htmlSafe()',
-      isHTMLSafe(content) || content === null || typeof content === 'undefined'
+      isHTMLSafe(content) || content === null || typeof content === 'undefined',
     );
 
     // content should be undefined or a SafeString

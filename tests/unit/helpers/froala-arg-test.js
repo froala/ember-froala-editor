@@ -32,7 +32,7 @@ module('Unit | Helper | froala-arg', function (hooks) {
     let callback = (editor, param1, param2) => param2;
     assert.strictEqual(
       froalaArg(callback, check1).bind(editor)(check2),
-      check2
+      check2,
     );
   });
 

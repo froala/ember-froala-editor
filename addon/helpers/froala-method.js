@@ -5,7 +5,7 @@ import { get } from '@ember/object';
 export function froalaMethod(methodName, helperHash = {}, ...helperParams) {
   assert(
     '{{froala-method}} helper needs a string method path as the first argument',
-    typeof methodName === 'string' && methodName.length > 0
+    typeof methodName === 'string' && methodName.length > 0,
   );
 
   // Create a closure to pass back as the "action" to be triggered
@@ -18,7 +18,7 @@ export function froalaMethod(methodName, helperHash = {}, ...helperParams) {
 
     assert(
       '{{froala-method}} helper cannot determine the editor instance',
-      typeof editor === 'object' && editor.component
+      typeof editor === 'object' && editor.component,
     );
 
     // Get the actual method using ember.get() so that nested paths work here
@@ -26,7 +26,7 @@ export function froalaMethod(methodName, helperHash = {}, ...helperParams) {
 
     assert(
       '{{froala-method}} helper needs a valid method path as the first argument',
-      typeof method === 'function'
+      typeof method === 'function',
     );
 
     // Copy helperParams to pass into the method
@@ -55,5 +55,5 @@ export function froalaMethod(methodName, helperHash = {}, ...helperParams) {
 }
 
 export default helper(([methodName, ...partial], hash) =>
-  froalaMethod(methodName, hash, ...partial)
+  froalaMethod(methodName, hash, ...partial),
 );

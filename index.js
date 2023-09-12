@@ -70,7 +70,7 @@ module.exports = {
         throw new Error(
           `${this.name}: ${type} ` +
             'option in ember-cli-build.js must be an array. ' +
-            'Boolean and string values have been depreciated.'
+            'Boolean and string values have been depreciated.',
         );
       }
     });
@@ -108,7 +108,7 @@ module.exports = {
 
     // Paths to use for validating optional assets
     let froalaPath = path.dirname(
-      require.resolve('froala-editor/package.json')
+      require.resolve('froala-editor/package.json'),
     );
     let languagePath = path.join(froalaPath, 'js', 'languages');
     let pluginJsPath = path.join(froalaPath, 'js', 'plugins');
@@ -124,7 +124,7 @@ module.exports = {
         this.options['@embroider/macros'].setOwnConfig.languages.push(filename);
       } else {
         throw new Error(
-          `${this.name}: languages "${language}" is not available.`
+          `${this.name}: languages "${language}" is not available.`,
         );
       }
     });
@@ -135,20 +135,20 @@ module.exports = {
       let cssFilename = plugin + '.min.css';
       if (fs.existsSync(path.join(pluginJsPath, jsFilename))) {
         this.options['@embroider/macros'].setOwnConfig.plugins.js.push(
-          jsFilename
+          jsFilename,
         );
         if (fs.existsSync(path.join(pluginCssPath, cssFilename))) {
           this.options['@embroider/macros'].setOwnConfig.plugins.css.push(
-            cssFilename
+            cssFilename,
           );
         }
       } else if (fs.existsSync(path.join(thirdPartyJsPath, jsFilename))) {
         this.options['@embroider/macros'].setOwnConfig.third_party.js.push(
-          jsFilename
+          jsFilename,
         );
         if (fs.existsSync(path.join(thirdPartyCssPath, cssFilename))) {
           this.options['@embroider/macros'].setOwnConfig.third_party.css.push(
-            cssFilename
+            cssFilename,
           );
         }
       } else {

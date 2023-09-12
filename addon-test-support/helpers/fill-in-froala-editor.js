@@ -6,7 +6,7 @@ export default registerAsyncHelper(
   'fillInFroalaEditor',
   function (app, selector, html) {
     return fillInFroalaEditor(selector, html);
-  }
+  },
 );
 
 export async function fillInFroalaEditor(selector, html) {

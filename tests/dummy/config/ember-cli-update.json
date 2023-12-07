@@ -12,6 +12,7 @@
           "isBaseBlueprint": true,
           "options": [
             "--welcome",
+            "--pnpm",
             "--ci-provider=github"
           ]
         }

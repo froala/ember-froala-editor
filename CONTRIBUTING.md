@@ -20,7 +20,7 @@ commit message for clarification as needed.
 
 * `git clone` this repository (fork if you plan on submitting a PR)
 * `cd ember-froala-editor`
-* `npm install`
+* `pnpm install`
 
 
 ### Running Docs Server
@@ -31,7 +31,7 @@ commit message for clarification as needed.
 
 ### Running Tests
 
-* `npm test` (Runs `ember try:each` to test against multiple Ember versions)
+* `pnpm test` (Runs `ember try:each` to test against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 * `ember server` (Visit tests at http://localhost:4200/tests)

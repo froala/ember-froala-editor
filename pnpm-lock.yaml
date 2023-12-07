@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   '@babel/core':
-    specifier: ^7.22.20
+    specifier: ^7.23.5
     version: 7.23.5
   '@ember/render-modifiers':
     specifier: ^2.1.0
@@ -21,7 +21,7 @@ dependencies:
     specifier: ^2.6.3
     version: 2.7.0(webpack@5.89.0)
   ember-cli-babel:
-    specifier: ^8.0.0
+    specifier: ^8.2.0
     version: 8.2.0(@babel/core@7.23.5)
   ember-cli-htmlbars:
     specifier: ^6.3.0
@@ -35,7 +35,7 @@ devDependencies:
     specifier: ^7.22.15
     version: 7.23.3(@babel/core@7.23.5)(eslint@8.55.0)
   '@babel/plugin-proposal-decorators':
-    specifier: ^7.22.15
+    specifier: ^7.23.5
     version: 7.23.5(@babel/core@7.23.5)
   '@ember/optional-features':
     specifier: ^2.0.0
@@ -44,7 +44,7 @@ devDependencies:
     specifier: ^3.2.0
     version: 3.2.1(ember-source@5.4.0)(webpack@5.89.0)
   '@embroider/test-setup':
-    specifier: ^3.0.1
+    specifier: ^3.0.3
     version: 3.0.3
   '@glimmer/tracking':
     specifier: ^1.1.2
@@ -53,7 +53,7 @@ devDependencies:
     specifier: ^3.0.0
     version: 3.0.0
   concurrently:
-    specifier: ^8.2.1
+    specifier: ^8.2.2
     version: 8.2.2
   ember-cli:
     specifier: ~5.4.1
@@ -98,7 +98,7 @@ devDependencies:
     specifier: ^3.0.0
     version: 3.0.0
   eslint:
-    specifier: ^8.49.0
+    specifier: ^8.55.0
     version: 8.55.0
   eslint-config-prettier:
     specifier: ^9.0.0
@@ -107,13 +107,13 @@ devDependencies:
     specifier: ^11.11.1
     version: 11.11.1(eslint@8.55.0)
   eslint-plugin-n:
-    specifier: ^16.1.0
+    specifier: ^16.3.1
     version: 16.3.1(eslint@8.55.0)
   eslint-plugin-prettier:
-    specifier: ^5.0.0
+    specifier: ^5.0.1
     version: 5.0.1(eslint-config-prettier@9.1.0)(eslint@8.55.0)(prettier@3.1.0)
   eslint-plugin-qunit:
-    specifier: ^8.0.0
+    specifier: ^8.0.1
     version: 8.0.1(eslint@8.55.0)
   loader.js:
     specifier: ^4.7.0
@@ -122,13 +122,13 @@ devDependencies:
     specifier: ^3.0.3
     version: 3.1.0
   qunit:
-    specifier: ^2.19.4
+    specifier: ^2.20.0
     version: 2.20.0
   qunit-dom:
     specifier: ^2.0.0
     version: 2.0.0
   stylelint:
-    specifier: ^15.10.3
+    specifier: ^15.11.0
     version: 15.11.0
   stylelint-config-standard:
     specifier: ^34.0.0
@@ -137,7 +137,7 @@ devDependencies:
     specifier: ^4.0.2
     version: 4.1.0(prettier@3.1.0)(stylelint@15.11.0)
   webpack:
-    specifier: ^5.88.2
+    specifier: ^5.89.0
     version: 5.89.0
 
 packages:

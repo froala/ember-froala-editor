@@ -23,18 +23,17 @@ commit message for clarification as needed.
 * `pnpm install`
 
 
-### Running Docs Server
-
-* `ember server`
-* Visit the docs at http://localhost:4200
-
-
 ### Running Tests
 
-* `pnpm test` (Runs `ember try:each` to test against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-* `ember server` (Visit tests at http://localhost:4200/tests)
+* `pnpm run test` - Runs the test suite on the current Ember version
+* `pnpm run test:ember --server` - Runs the test suite in "watch mode"
+* `pnpm run test:ember-compatibility` - Runs the test suite against multiple Ember versions
+
+
+### Running the dummy application
+
+* `pnpm run start`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200)
 
 
 For more information on using ember-cli, visit 

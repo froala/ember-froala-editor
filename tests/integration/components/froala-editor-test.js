@@ -354,6 +354,7 @@ module('Integration | Component | froala-editor', function (hooks) {
     this.set('disabled', false);
 
     this.set('enableDisabled', () => {
+      // eslint-disable-next-line ember/no-runloop
       next(this, () => {
         this.set('disabled', true);
       });
@@ -385,6 +386,7 @@ module('Integration | Component | froala-editor', function (hooks) {
     this.set('disabled', true);
 
     this.set('disableDisabled', () => {
+      // eslint-disable-next-line ember/no-runloop
       next(this, () => {
         this.set('disabled', false);
       });
@@ -393,6 +395,7 @@ module('Integration | Component | froala-editor', function (hooks) {
     this.set('editOn', () => {
       assert.ok(true);
       assertionsRan++;
+      // eslint-disable-next-line ember/no-runloop
       next(this, () => {
         this.set('disabled', true);
       });

@@ -1,6 +1,6 @@
 {
   "name": "ember-froala-editor",
-  "version": "4.2.2",
+  "version": "4.3.0",
   "description": "An ember-cli addon that properly wraps the Froala WYSIWYG Editor for use in Ember.js",
   "keywords": [
     "ember-addon",

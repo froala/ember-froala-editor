@@ -57,7 +57,7 @@
     "ember-auto-import": "^2.8.1",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
-    "froala-editor": "^4.3.0"
+    "froala-editor": "^4.3.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.1",

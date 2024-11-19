@@ -27,8 +27,8 @@ dependencies:
     specifier: ^6.3.0
     version: 6.3.0
   froala-editor:
-    specifier: ^4.3.0
-    version: 4.3.0
+    specifier: ^4.3.1
+    version: 4.3.1
 
 devDependencies:
   '@babel/eslint-parser':
@@ -6564,8 +6564,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /froala-editor@4.3.0:
-    resolution: {integrity: sha512-F0vOUrgO2KYa/z9eWEpIXCsArbYejiArfFmR0TaVlqecXRcDqXIJ1VxvECreoy6tC+B5FtO1CDV7GW3d0HXgtg==}
+  /froala-editor@4.3.1:
+    resolution: {integrity: sha512-WN/wqPsKjz0BT4SrJVTMpNYTuYfFPDwU+y7NpgCyNXZ+SrTUnopsFTaVnoDNSPDSXSAzK7YiNRZtqa0b2pEJug==}
     dev: false
 
   /fs-extra@0.24.0:
